@@ -16,22 +16,16 @@ import { Button } from "antd";
 import { generatePath, useNavigate } from "react-router-dom";
 import { PATH } from "constant";
 
-import { useQueryUrl } from "hooks";
 
 const HomeTemplate = () => {
   const navigation = useNavigate();
-  const { listPhim, bannerList } = useSelector(
+
+  //lấy thêm cái listSearch là state được tạo ra từ cái ô search, coi slide để biết giá trị ban đầu của nó là gì 
+  const { listPhim, bannerList, listSearch } = useSelector(
     (state: RootState) => state.QuanLyPhim
   );
-  console.log(listPhim);
 
-  const [queryParams] = useQueryUrl();
 
-  const movieSearch = listPhim?.filter((item) =>
-    item.tenPhim
-      .toLowerCase()
-      .includes((queryParams)?.movieName?.toLowerCase())
-  );
 
   return (
     <Container>
@@ -63,7 +57,9 @@ const HomeTemplate = () => {
         <PhimTypeButton></PhimTypeButton>
 
         <div className="grid grid-cols-5 gap-5">
-          {((queryParams as any)?.movieName ? movieSearch : listPhim)?.map(
+          {
+            //kiểm tra nếu có listSearch ( đã search rồi) thì dùng list search đó để render, không thì render toàn bộ listPhim 
+          (listSearch ? listSearch : listPhim)?.map(
             (item) => {
               return (
                 <Card key={item.maPhim} className="card-item">
@@ -94,7 +90,7 @@ const HomeTemplate = () => {
               );
             }
           )}
-           </div>
+        </div>
       </Container_2>
     </Container>
   );

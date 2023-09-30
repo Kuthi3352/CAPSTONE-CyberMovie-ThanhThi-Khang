@@ -1,5 +1,5 @@
 import { apiInstance } from "constant/APIInstance";
-import {  DanhSachGhe, ThongTinPhimRap,} from "types/DanhSachPhongVe";
+import { DanhSachPhongVe } from "types";
 
 const api = apiInstance({
     baseURL: import.meta.env.VITE_DANH_SACH_PHONG_VE_API,
@@ -7,12 +7,7 @@ const api = apiInstance({
 });
 export const DanhSachPhongVeServices = {
     ThongTinPhimRap: (query: string) => 
-    api.get<ApiResponse<ThongTinPhimRap[]>>(
+    api.get<ApiResponse<DanhSachPhongVe>>(
         `?MaLichChieu=${query}`
-    ),
-    DanhSachGhe: (query: string) =>
-    api.get<ApiResponse<DanhSachGhe[]>>(
-        `?MaLichChieu=${query}`
-    )
-  
+    ), 
 }

@@ -1,33 +1,35 @@
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth, useQueryUrl } from "hooks";
-
+import { useAuth} from "hooks";
 import { PATH } from "constant";
 import { RootState, useAppDispatch } from "store";
 import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
-
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
+import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
 
-// import { Button } from "antd";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const { user, accessToken } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * vì cái header này nằm ở mọi page cho nên tạo biến trong header thì page nào cũng sẽ có => phí
+   * flow search nó sẽ là:
+   * lấy giá trị của ô input 
+   * search trong danh sách list phim coi thằng nào match với từ khoá -> tạo ra 1 list search 
+   * tuy nhiên list đã search ra không được render ở trong header mà lại ở component khác -> ta tạo 1 state trên redux để hứng giá trị, khi ấn search button thì dispatch lên store để lưu
+   * component nào cần render ra cái list đó thì lên state lấy là xong => tách được header ra khỏi các component khác 
+   */
+
+  //lấy để đối chiếu
   const { listPhim } = useSelector((state: RootState) => state.QuanLyPhim);
-  const [inputValue, setInputValue] = useState();
-  const [queryParams, setQueryParams] = useQueryUrl();
-  const movieSearch = listPhim?.filter((item) =>
-    item.tenPhim
-      .toLowerCase()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .includes((queryParams as any)?.movieName?.toLowerCase())
-  );
-  console.log(movieSearch);
+  //tạo để hứng giá trị tìm kiếm
+  const [inputValue, setInputValue] = useState<string>();
+
 
   return (
     <div>
@@ -51,16 +53,22 @@ const Header = () => {
             <Input
               value={inputValue || ""}
               placeholder="Tìm kiếm tên phim"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              onChange={(ev: any) => {
-                setInputValue(ev.target.value);
+              onChange={(ev) => {
+                //lấy giá trị của ô tìm kiếm và gán vào state đối chiếu
+                const value = ev.target.value
+                setInputValue(value);
               }}
             />
             <Button
               onClick={() => {
-                setQueryParams({
-                  movieName: inputValue || undefined,
-                });
+                //tạo list phim dựa vào đối chiếu state tìm kiếm 
+                const searchList = listPhim?.filter((item) =>
+                  item.tenPhim
+                    .toLowerCase()
+                    .includes(inputValue?.toLowerCase())
+                );
+                //dispatch kết quả này lên store. xem tiếp xử lý ở trang Home coi render ra cái đống phim
+                dispatch(QuanLyPhimSliceActions.searchlist(searchList))
               }}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -70,7 +78,7 @@ const Header = () => {
         <div className="auth">
           {!accessToken && (
             <p>
-              <span className="span-hover" onClick={() => navigate(PATH.login)}>
+              <span className="span-hover ms-5" onClick={() => navigate(PATH.login)}>
                 Đăng nhập
               </span>
               <span> | </span>

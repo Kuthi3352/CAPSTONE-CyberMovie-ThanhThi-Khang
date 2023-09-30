@@ -5,27 +5,17 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { ThongTinPhimThunk } from "store/Booking/thunk";
-// import { DanhSachGheThunk } from "store/Booking/thunk";
-// import { ThongTinLichChieuThunk } from "store/QuanLyRap/thunk";
+import styled from "styled-components";
 
 
 
 export const BookingPageTemplate = () => {
-  //tao moi truong 
-  //hello
-  
   const dispatch = useAppDispatch()
-  const { thongTinPhimRap } = useSelector(
+  const { lichchieuID } = useParams()
+  const { danhSachPhongVe } = useSelector(
     (state: RootState) => state.DanhSachPhongVe
   );
-  const { lichchieuID } = useParams()
 
-  //theo doi 
-  // console.log(danhSachGhe);   
-  console.log('thongTinPhimRap', thongTinPhimRap);
-
-
-  //goi API 
   useEffect(() => {
     dispatch(ThongTinPhimThunk(lichchieuID))
   }, [dispatch, lichchieuID])
@@ -33,9 +23,20 @@ export const BookingPageTemplate = () => {
 
 
   return (
-    <div className="w-4/5 m-auto mt-4">
-
-
-    </div>
+    <Container>
+      <h1 className="text-center text-3xl mt-5 font-bold">{danhSachPhongVe?.thongTinPhim?.tenPhim}</h1>
+      <div className="flex w-3/4 m-auto gap-5 mt-20">
+        <img src={danhSachPhongVe?.thongTinPhim?.hinhAnh} alt="" className="w-1/6  " />
+        <div className="">
+          <p><span className="italic font-semibold">Suất chiếu:</span>  {danhSachPhongVe?.thongTinPhim?.gioChieu} - {danhSachPhongVe?.thongTinPhim?.ngayChieu}</p>
+        </div>
+      </div>
+    </Container>
   )
 }
+
+
+const Container = styled.div`
+  width: 80%;
+  margin: auto;
+`

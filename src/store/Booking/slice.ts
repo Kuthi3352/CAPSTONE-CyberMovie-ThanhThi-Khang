@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-import { DanhSachGhe,  ThongTinPhimRap} from "types/DanhSachPhongVe";
-import { DanhSachGheThunk, ThongTinPhimThunk } from "./thunk";
+import { ThongTinPhimThunk } from "./thunk";
+import { DanhSachPhongVe } from "types";
 
 type PhongVeType = {
-    thongTinPhimRap?: ThongTinPhimRap[];
-    danhSachGhe?: DanhSachGhe[];
+    danhSachPhongVe?: DanhSachPhongVe;
    
-
 }
 const initialState: PhongVeType = {
 
@@ -20,11 +17,11 @@ const DanhSachPhongVeSlice = createSlice({
     extraReducers(builder){
         builder
         .addCase(ThongTinPhimThunk.fulfilled, (state, {payload}) => {
-            state.thongTinPhimRap = payload;
+            state.danhSachPhongVe = payload;
         })
-        .addCase(DanhSachGheThunk.fulfilled,(state, {payload}) =>{
-            state.danhSachGhe = payload;
-        })
+    //     .addCase(DanhSachGheThunk.fulfilled,(state, {payload}) =>{
+    // vscode-file://vscode-app/c:/Users/Khang%20Nguyen/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html        state.danhSachGhe = payload;
+    //     })
        
     }
 })
