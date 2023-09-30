@@ -12,6 +12,8 @@ import { ThongTinPhimThunk } from "store/Booking/thunk";
 
 export const BookingPageTemplate = () => {
   //tao moi truong 
+  //hello
+  
   const dispatch = useAppDispatch()
   const { thongTinPhimRap } = useSelector(
     (state: RootState) => state.DanhSachPhongVe
