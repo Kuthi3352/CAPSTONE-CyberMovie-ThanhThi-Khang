@@ -19,7 +19,6 @@ export const BookingPageTemplate = () => {
   const { lichchieuID } = useParams()
 
   //theo doi 
-  // console.log(danhSachGhe);   
   console.log('thongTinPhimRap', thongTinPhimRap);
 
 
