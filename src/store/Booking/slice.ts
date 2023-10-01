@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { DanhSachGhe,  ThongTinPhimRap} from "types/DanhSachPhongVe";
-import { DanhSachGheThunk, ThongTinPhimThunk } from "./thunk";
+import {DanhSachPhongVe} from "types/DanhSachPhongVe";
+
+import {  DanhSachPhongVeThunk} from "./thunk";
+
 
 type PhongVeType = {
-    thongTinPhimRap?: ThongTinPhimRap[];
-    danhSachGhe?: DanhSachGhe[];
-   
+
+DanhSachPhongVe?: DanhSachPhongVe;
+ 
 
 }
 const initialState: PhongVeType = {
@@ -19,12 +21,10 @@ const DanhSachPhongVeSlice = createSlice({
     reducers: {},
     extraReducers(builder){
         builder
-        .addCase(ThongTinPhimThunk.fulfilled, (state, {payload}) => {
-            state.thongTinPhimRap = payload;
+        .addCase(DanhSachPhongVeThunk.fulfilled,(state, {payload}) =>{
+            state.DanhSachPhongVe = payload;
         })
-        .addCase(DanhSachGheThunk.fulfilled,(state, {payload}) =>{
-            state.danhSachGhe = payload;
-        })
+       
        
     }
 })

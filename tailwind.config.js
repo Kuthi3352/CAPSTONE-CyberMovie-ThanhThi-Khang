@@ -44,6 +44,10 @@ export default {
         10: '10px',
         16: '16px',
     },
+    gridTemplateColumns: {
+      '16': 'repeat(16, minmax(0, 1fr))',
+    },
+
     },
   },
   plugins: [],
