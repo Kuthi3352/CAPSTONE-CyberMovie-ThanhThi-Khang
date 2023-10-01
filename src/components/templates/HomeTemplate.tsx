@@ -101,23 +101,7 @@ export default HomeTemplate;
 const Container = styled.div`
   width: 100vw;
   margin: auto;
-  .card-item {
-    .img {
-      width: 100%;
-      height: 300px;
-      img {
-        max-height: 300px;
-        margin: auto;
-      }
-    }
-    .phim-content {
-      margin-top: 10px;
-    }
-    transition: 0.5s;
-    &:hover {
-      transform: scale(1.07);
-    }
-  }
+  
 `;
 
 const Container_2 = styled.div`

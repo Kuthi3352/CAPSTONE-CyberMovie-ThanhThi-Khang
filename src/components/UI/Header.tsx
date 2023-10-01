@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth} from "hooks";
+import { useAuth } from "hooks";
 import { PATH } from "constant";
 import { RootState, useAppDispatch } from "store";
 import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
@@ -35,18 +35,17 @@ const Header = () => {
     <div>
       <Container>
         <div className="header-content">
-          <h1 className="ps-5">
+          <h1 className="ps-5 logo" onClick={() => {
+            navigate("/")
+          }}>
             CYBER<span className="text-red-500">MOVIE</span>
           </h1>
           <div className="nav">
-            <NavLink to="/" className="nav-link">
-              THÔNG TIN
-            </NavLink>
-            <NavLink to="/" className="nav-link">
+            <NavLink to={PATH.searchPage} className="nav-link">
               PHIM
             </NavLink>
             <NavLink to={PATH.heThongRap} className="nav-link">
-              RẠP
+              RẠP - LỊCH CHIẾU
             </NavLink>
           </div>
           <div className="search">
@@ -62,13 +61,18 @@ const Header = () => {
             <Button
               onClick={() => {
                 //tạo list phim dựa vào đối chiếu state tìm kiếm 
-                const searchList = listPhim?.filter((item) =>
-                  item.tenPhim
-                    .toLowerCase()
-                    .includes(inputValue?.toLowerCase())
-                );
-                //dispatch kết quả này lên store. xem tiếp xử lý ở trang Home coi render ra cái đống phim
-                dispatch(QuanLyPhimSliceActions.searchlist(searchList))
+                if (inputValue !== '') {
+                  const searchList = listPhim?.filter((item) =>
+                    item.tenPhim
+                      .toLowerCase()
+                      .includes(inputValue?.toLowerCase())
+                  );
+                  //dispatch kết quả này lên store. xem tiếp xử lý ở trang Home coi render ra cái đống phim
+                  dispatch(QuanLyPhimSliceActions.searchlist(searchList))
+                }
+                else {
+                  dispatch(QuanLyPhimSliceActions.searchlist(undefined))
+                }
               }}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -78,12 +82,12 @@ const Header = () => {
         <div className="auth">
           {!accessToken && (
             <p>
-              <span className="span-hover ms-5" onClick={() => navigate(PATH.login)}>
+              <span className="span-hover ms-5 align-middle" onClick={() => navigate(PATH.login)}>
                 Đăng nhập
               </span>
-              <span> | </span>
+              <span className="align-middle"> | </span>
               <span
-                className="span-hover"
+                className="span-hover align-middle"
                 onClick={() => navigate(PATH.register)}
               >
                 Đăng ký
@@ -140,7 +144,9 @@ const Container = styled.header`
   width: 80%;
   margin: auto;
   display: flex;
-
+.logo:hover{
+  cursor: pointer;
+}
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 

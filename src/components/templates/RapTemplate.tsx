@@ -42,8 +42,8 @@ const RapTemplate = () => {
                     <div>
                         {danhSachPhimHienTai?.map((item) => {
                             return (
-                                <DivPhim className="m-3 p-3" key={item.maPhim}>
-                                    <div className="w-3/12 align-middle">
+                                <DivPhim className="m-5 p-3" key={item.maPhim}>
+                                    <div className="w-3/12 p-4 align-middle">
                                         <Badge count={item.hot ? "Hot" : undefined}
                                         >
                                             <img src={item.hinhAnh} alt="" />
