@@ -8,6 +8,7 @@ import { DanhSachPhongVeThunk } from "store/DanhSachPhongVe/thunk";
 import { BookingAction, DatVeThunk } from "store/DatVe";
 import styled from "styled-components";
 import cln from "classnames";
+import { DanhSachVe, DatVeType } from "types/DatVeType";
 
 export const BookingPageTemplate = () => {
   const dispatch = useAppDispatch();
@@ -18,11 +19,12 @@ export const BookingPageTemplate = () => {
   const { chairBookings, chairBookeds } = useSelector(
     (state: RootState) => state.Booking
   );
-  const { DatVe } = useSelector((state: RootState) => state.DatVe);
-  console.log(DatVe);
 
-  console.log("chairBookeds", chairBookeds);
-
+  const payloadAPIDatVe: DatVeType = {
+    maLichChieu: Number(lichchieuID),
+    danhSachVe: [],
+  };
+  
   useEffect(() => {
     dispatch(DanhSachPhongVeThunk(lichchieuID));
   }, [dispatch, lichchieuID]);
@@ -111,9 +113,12 @@ export const BookingPageTemplate = () => {
         <Button
           className="w-4/6 mt-20 !text-3xl !font-medium !h-[60px] !bg-amber-500 !text-white"
           onClick={() => {
-            dispatch(BookingAction.setChairBookeds()),
-              dispatch(DatVeThunk(DatVe));
-            console.log(dispatch(DatVeThunk(DatVe)));
+            dispatch(BookingAction.setChairBookeds());
+            const bookingPayload: DanhSachVe[] = chairBookings?.map((item) => {
+              return { maGhe: item.maGhe, giaVe: item.giaVe };
+            });
+            payloadAPIDatVe.danhSachVe = bookingPayload;
+            dispatch(DatVeThunk(payloadAPIDatVe));
           }}
         >
           Đặt Vé

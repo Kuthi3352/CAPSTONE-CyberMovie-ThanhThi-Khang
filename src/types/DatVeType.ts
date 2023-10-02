@@ -4,10 +4,5 @@ export type DanhSachVe = {
 }
 export type DatVeType = {
     maLichChieu:number;
-    danhSachVe: [
-        {
-            maGhe?: number;
-            giaVe?: number;
-        }
-    ]
+    danhSachVe: DanhSachVe[]
 }

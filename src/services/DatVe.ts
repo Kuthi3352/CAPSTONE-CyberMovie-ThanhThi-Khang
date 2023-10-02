@@ -7,5 +7,5 @@ const api = apiInstance({
 });
 
 export const DatVeServices = {
-    datVe: (payload: DatVeType) => api.post<ApiResponse<string>>(payload)
+    datVe: (payload:DatVeType) => api.post<ApiResponse<string>>("/DatVe",payload)
 }

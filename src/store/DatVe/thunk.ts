@@ -3,13 +3,13 @@ import { DatVeServices } from "services/DatVe";
 import { DatVeType } from "types/DatVeType";
 
 export const DatVeThunk = createAsyncThunk(
-    "DatVe1",
+    "DatVe",
     async(payload: DatVeType,{rejectWithValue}) => {
         try {
             const data = await DatVeServices.datVe(payload);
-            console.log(data);
+            console.log('thanh cmn cong cong');
             
-            // return data.data.content;
+            return data.data.content;
         }catch (err) {
             return rejectWithValue(err)
         }
