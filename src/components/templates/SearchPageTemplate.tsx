@@ -18,7 +18,6 @@ const SearchPageTemplate = () => {
             <p className="text-3xl text-center font-semibold">Nhập tên phim để tìm kiếm</p>
             <p className="italic text-center mt-5">Bạn có thể nhập tên phim vào ô tìm kiếm để tìm phim muốn xem</p>
           </div>
-
         ))
       }
       <div className="grid grid-cols-5 gap-5">
@@ -54,7 +53,6 @@ const SearchPageTemplate = () => {
             })
         }
       </div>
-
     </Container>
   )
 }

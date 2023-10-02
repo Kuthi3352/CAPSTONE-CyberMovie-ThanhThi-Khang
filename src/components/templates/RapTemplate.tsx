@@ -30,8 +30,6 @@ const RapTemplate = () => {
         return listcumrap;
     };
 
-
-
     const getCumRap = () => {
         const cumrap = cumRap?.map((cumrap, index) => {
             return {
@@ -42,22 +40,22 @@ const RapTemplate = () => {
                     <div>
                         {danhSachPhimHienTai?.map((item) => {
                             return (
-                                <DivPhim className="m-5 p-3" key={item.maPhim}>
+                                <DivPhim className="m-5 p-5" key={item.maPhim}>
                                     <div className="w-3/12 p-4 align-middle">
                                         <Badge count={item.hot ? "Hot" : undefined}
                                         >
                                             <img src={item.hinhAnh} alt="" />
                                         </Badge>
                                     </div>
-                                    <div className="w-9/12 p-2">
+                                    <div className="w-9/12 p-2 ms-5">
                                         <Badge
                                             count={item.dangChieu ? "Đang chiếu" : item.sapChieu ? "Sắp chiếu" : undefined} color={item.dangChieu ? "red" : item.sapChieu ? "yellow" : undefined}>
-                                            <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
+                                            <h1 className="text-xl font-semibold ms-2 my-4 italic drop-shadow-xl">
                                                 {item.tenPhim}
                                             </h1>
                                         </Badge>
 
-                                        <div className="grid grid-cols-4">
+                                        <div className="grid grid-cols-4 mt-3">
                                             {item.lstLichChieuTheoPhim.map((phim) => {
 
                                                 return (
@@ -116,7 +114,7 @@ const RapTemplate = () => {
     }, [dispatch]);
     return (
         <div>
-            <h1 className="p-4 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
+            <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
             <HeThongRap>
                 <Tabs
                     tabPosition="left"
@@ -135,7 +133,7 @@ const HeThongRap = styled.div`
   height: 80vh;
   width: 80%;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow-y: scroll;
   &::-webkit-scrollbar-button{
