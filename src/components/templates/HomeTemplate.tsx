@@ -28,9 +28,7 @@ const HomeTemplate = () => {
   const [queryParams] = useQueryUrl();
 
   const movieSearch = listPhim?.filter((item) =>
-    item.tenPhim
-      .toLowerCase()
-      .includes((queryParams)?.movieName?.toLowerCase())
+    item.tenPhim.toLowerCase().includes(queryParams?.movieName?.toLowerCase())
   );
 
   return (
@@ -67,7 +65,7 @@ const HomeTemplate = () => {
             (item) => {
               return (
                 <Card key={item.maPhim} className="card-item">
-                  <div className="img">
+                  <div className="img ">
                     <img src={item.hinhAnh} alt="" />
                   </div>
                   <div className="phim-content flex justify-between">
@@ -94,7 +92,7 @@ const HomeTemplate = () => {
               );
             }
           )}
-           </div>
+        </div>
       </Container_2>
     </Container>
   );

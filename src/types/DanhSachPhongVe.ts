@@ -1,5 +1,5 @@
 export type ThongTinPhimRap = {
-    maLichChieu?: number;
+    maLichChieu?: string;
     tenCumRap?: string;
     tenRap?: string;
     diaChi?: string;
@@ -19,6 +19,6 @@ export type DanhSachGhe = {
     taiKhoanNguoiDat?:string;
 }
 export type DanhSachPhongVe = {
-    ThongTinPhim?: ThongTinPhimRap[];
-    DanhSachGhe?: DanhSachGhe[];
-}
+  thongTinPhim: ThongTinPhimRap;
+  danhSachGhe: DanhSachGhe[];
+};
