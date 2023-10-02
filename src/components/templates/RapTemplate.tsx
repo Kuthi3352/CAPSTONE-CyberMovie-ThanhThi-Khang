@@ -52,15 +52,15 @@ const RapTemplate = () => {
                         item.dangChieu
                           ? "Đang chiếu"
                           : item.sapChieu
-                          ? "Sắp chiếu"
-                          : undefined
+                            ? "Sắp chiếu"
+                            : undefined
                       }
                       color={
                         item.dangChieu
                           ? "red"
                           : item.sapChieu
-                          ? "yellow"
-                          : undefined
+                            ? "yellow"
+                            : undefined
                       }
                     >
                       <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
@@ -68,36 +68,39 @@ const RapTemplate = () => {
                       </h1>
                     </Badge>
 
-                    <div className="grid grid-cols-4">
-                      {item.lstLichChieuTheoPhim.map((phim) => {
-                       
-                        
-                        return (
-                          <ThongTinChieu
-                            key={phim.maLichChieu}
-                            className="text-center"
-                            onClick={() => {
-                              console.log(phim.maLichChieu);
-                              const path = generatePath(
-                                "/thong-tin-chieu/:lichchieuID",
-                                { lichchieuID: `${phim.maLichChieu}` }
-                              );
-                              navigate(path);
-                            }}
-                          >
-                            <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
-                            <p className="text-right me-3 font-bold">
-                              {phim.ngayChieuGioChieu.slice(11, 16)}
-                            </p>
-                          </ThongTinChieu>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </DivPhim>
+
+                    <div className="grid grid-cols-4" >
+                      {
+                        item.lstLichChieuTheoPhim.map((phim) => {
+
+
+                          return (
+                            <ThongTinChieu
+                              key={phim.maLichChieu}
+                              className="text-center"
+                              onClick={() => {
+                                console.log(phim.maLichChieu);
+                                const path = generatePath(
+                                  "/thong-tin-chieu/:lichchieuID",
+                                  { lichchieuID: `${phim.maLichChieu}` }
+                                );
+                                navigate(path);
+                              }}
+                            >
+                              <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
+                              <p className="text-right me-3 font-bold">
+                                {phim.ngayChieuGioChieu.slice(11, 16)}
+                              </p>
+                            </ThongTinChieu>
+                          );
+                        })
+                      }
+                    </div >
+                  </div >
+                </DivPhim >
               );
             })}
-          </div>
+          </div >
         ),
       };
     });
@@ -136,9 +139,7 @@ const RapTemplate = () => {
   }, [dispatch]);
   return (
     <div>
-      <h1 className="p-4 text-4xl font-bold text-center">
-        HỆ THỐNG RẠP - LỊCH CHIẾU
-      </h1>
+      <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
       <HeThongRap>
         <Tabs
           tabPosition="left"
@@ -157,9 +158,8 @@ const HeThongRap = styled.div`
   height: 80vh;
   width: 80%;
   margin: auto;
-  margin-top: 10px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin-top: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow-y: scroll;
   &::-webkit-scrollbar-button {
     display: none;

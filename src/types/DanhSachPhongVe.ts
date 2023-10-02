@@ -19,6 +19,6 @@ export type DanhSachGhe = {
     taiKhoanNguoiDat?:string;
 }
 export type DanhSachPhongVe = {
-  thongTinPhim: ThongTinPhimRap;
-  danhSachGhe: DanhSachGhe[];
-};
+    thongTinPhim?: ThongTinPhimRap;
+    DanhSachGhe?: DanhSachGhe[];
+}

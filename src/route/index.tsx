@@ -6,6 +6,7 @@ import { Account, Detail, Home, Rap } from "pages";
 import Login from "pages/Login";
 import Register from "pages/Register";
 import { BookingPage } from "pages/BookingPage";
+import SearchPage from "pages/SearchPage";
 
 // import PhimDangChieu from 'components/UI/PhimDangChieu'
 
@@ -34,6 +35,10 @@ export const router: RouteObject[] = [
       {
         path: PATH.thongTinChieu,
         element: <BookingPage></BookingPage>
+      },
+      {
+        path:PATH.searchPage,
+        element:<SearchPage></SearchPage>
       }
     ],
   },

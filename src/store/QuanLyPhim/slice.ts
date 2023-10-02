@@ -6,17 +6,25 @@ import { ThongTinPhim } from "types/DanhSachPhimType";
 type StateType = {
   bannerList?: Banner[];
   listPhim?: ThongTinPhim[];
+  listSearch?: ThongTinPhim[];
 };
 
-const initialState: StateType = {};
+const initialState: StateType = {
+  listSearch: undefined,
+};
 
 const QuanLyPhimSlice = createSlice({
   name: "QuanLyPhim",
   initialState,
-  reducers: {},
+  reducers: {
+    searchlist: (state, { payload }) => {
+      console.log(payload);
+      state.listSearch = payload;
+    },
+  },
   extraReducers(builder) {
     builder
-      .addCase(BannerThunk.fulfilled, (state, { payload }) => { 
+      .addCase(BannerThunk.fulfilled, (state, { payload }) => {
         state.bannerList = payload;
       })
       .addCase(DanhSachPhimThunk.fulfilled, (state, { payload }) => {
