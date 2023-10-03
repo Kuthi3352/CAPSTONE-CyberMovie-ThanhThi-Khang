@@ -11,14 +11,6 @@ const PhimTypeButton = () => {
         <div>
             <Container className="!my-5">
                 <Button
-                    className="rounded-lg m-1 !bg-stone-200 "
-                    onClick={() => {
-                        dispatch(DanhSachPhimThunk("?maNhom=GP01"));
-                    }}
-                >
-                    Phim Hàn Quốc
-                </Button>
-                <Button
                     className="rounded-lg m-1 !bg-stone-200"
                     onClick={() => {
                         dispatch(DanhSachPhimThunk("?maNhom=GP03"));

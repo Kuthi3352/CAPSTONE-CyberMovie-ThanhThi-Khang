@@ -8,6 +8,6 @@ const api = apiInstance({
 export const DanhSachPhongVeServices = {
     ThongTinPhimRap: (query: string) => 
     api.get<ApiResponse<DanhSachPhongVe>>(
-        `?MaLichChieu=${query}`
+        `LayDanhSachPhongVe?MaLichChieu=${query}`
     ), 
 }

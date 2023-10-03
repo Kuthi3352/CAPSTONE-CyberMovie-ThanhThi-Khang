@@ -18,7 +18,6 @@ const QuanLyPhimSlice = createSlice({
   initialState,
   reducers: {
     searchlist: (state, { payload }) => {
-      console.log(payload);
       state.listSearch = payload;
     },
   },

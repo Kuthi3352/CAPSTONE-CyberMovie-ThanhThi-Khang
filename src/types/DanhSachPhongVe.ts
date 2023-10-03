@@ -20,5 +20,5 @@ export type DanhSachGhe = {
 }
 export type DanhSachPhongVe = {
     thongTinPhim?: ThongTinPhimRap;
-    DanhSachGhe?: DanhSachGhe[];
+    danhSachGhe?: DanhSachGhe[];
 }

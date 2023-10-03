@@ -11,7 +11,7 @@ export const MainLayout = () => {
 
   useEffect(() => {
     dispatch(BannerThunk());
-    dispatch(DanhSachPhimThunk(""));
+    dispatch(DanhSachPhimThunk("?maNhom=GP03"));
   }, [dispatch]);
 
   return (

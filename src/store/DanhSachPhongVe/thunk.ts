@@ -5,7 +5,7 @@ export const DanhSachPhongVeThunk = createAsyncThunk(
     "QuanLyDatVe/DanhSachPhongVe",
     async(query: string, {rejectWithValue}) => {
         try {
-            const data = await DanhSachPhongVeServices.DanhSachPhongVe(query);
+            const data = await DanhSachPhongVeServices.ThongTinPhimRap(query);
            
             return data.data.content;
           
