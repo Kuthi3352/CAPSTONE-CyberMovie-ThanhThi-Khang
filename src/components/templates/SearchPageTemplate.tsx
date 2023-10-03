@@ -8,7 +8,7 @@ import styled from "styled-components"
 
 
 const SearchPageTemplate = () => {
-  const { listSearch } = useSelector((state: RootState) => state.QuanLyPhim)
+  const { listSearch,listPhim } = useSelector((state: RootState) => state.QuanLyPhim)
   const navigation = useNavigate()
   return (
     <Container>
@@ -16,13 +16,13 @@ const SearchPageTemplate = () => {
         (!listSearch && (
           <div>
             <p className="text-3xl text-center font-semibold">Nhập tên phim để tìm kiếm</p>
-            <p className="italic text-center mt-5">Bạn có thể nhập tên phim vào ô tìm kiếm để tìm phim muốn xem</p>
+            <p className="italic text-center my-5">Bạn có thể nhập tên phim vào ô tìm kiếm để tìm phim muốn xem</p>
           </div>
         ))
       }
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid grid-cols-4 gap-7">
         {
-          listSearch?.map(
+          (listSearch?listSearch:listPhim)?.map(
             (item) => {
               return (
                 <Card key={item.maPhim} className="card-item">

@@ -17,13 +17,10 @@ import { PATH } from "constant";
 
 const HomeTemplate = () => {
   const navigation = useNavigate();
-
-  //lấy thêm cái listSearch là state được tạo ra từ cái ô search, coi slide để biết giá trị ban đầu của nó là gì 
   const { listPhim, bannerList, listSearch } = useSelector(
     (state: RootState) => state.QuanLyPhim
   );
-
-
+ 
 
   return (
     <Container>
@@ -53,10 +50,8 @@ const HomeTemplate = () => {
 
       <Container_2>
         <PhimTypeButton></PhimTypeButton>
-
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid grid-cols-4 gap-5">
           {
-            //kiểm tra nếu có listSearch ( đã search rồi) thì dùng list search đó để render, không thì render toàn bộ listPhim 
           (listSearch ? listSearch : listPhim)?.map(
             (item) => {
               return (
