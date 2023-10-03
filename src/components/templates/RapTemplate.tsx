@@ -41,26 +41,26 @@ const RapTemplate = () => {
             {danhSachPhimHienTai?.map((item) => {
               return (
                 <DivPhim className="m-3 p-3" key={item.maPhim}>
-                  <div className="w-3/12 align-middle">
+                  <div className=" xl:w-3/12 align-middle">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                   </div>
-                  <div className="w-9/12 p-2">
+                  <div className=" xl:w-9/12 p-2">
                     <Badge
                       count={
                         item.dangChieu
                           ? "Đang chiếu"
                           : item.sapChieu
-                            ? "Sắp chiếu"
-                            : undefined
+                          ? "Sắp chiếu"
+                          : undefined
                       }
                       color={
                         item.dangChieu
                           ? "red"
                           : item.sapChieu
-                            ? "yellow"
-                            : undefined
+                          ? "yellow"
+                          : undefined
                       }
                     >
                       <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
@@ -68,39 +68,34 @@ const RapTemplate = () => {
                       </h1>
                     </Badge>
 
-
-                    <div className="grid grid-cols-4" >
-                      {
-                        item.lstLichChieuTheoPhim.map((phim) => {
-
-
-                          return (
-                            <ThongTinChieu
-                              key={phim.maLichChieu}
-                              className="text-center"
-                              onClick={() => {
-                                console.log(phim.maLichChieu);
-                                const path = generatePath(
-                                  "/thong-tin-chieu/:lichchieuID",
-                                  { lichchieuID: `${phim.maLichChieu}` }
-                                );
-                                navigate(path);
-                              }}
-                            >
-                              <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
-                              <p className="text-right me-3 font-bold">
-                                {phim.ngayChieuGioChieu.slice(11, 16)}
-                              </p>
-                            </ThongTinChieu>
-                          );
-                        })
-                      }
-                    </div >
-                  </div >
-                </DivPhim >
+                    <LichChieu className="md:grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                      {item.lstLichChieuTheoPhim.map((phim) => {
+                        return (
+                          <ThongTinChieu
+                            key={phim.maLichChieu}
+                            className="text-center"
+                            onClick={() => {
+                              console.log(phim.maLichChieu);
+                              const path = generatePath(
+                                "/thong-tin-chieu/:lichchieuID",
+                                { lichchieuID: `${phim.maLichChieu}` }
+                              );
+                              navigate(path);
+                            }}
+                          >
+                            <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
+                            <p className="text-right me-3 font-bold">
+                              {phim.ngayChieuGioChieu.slice(11, 16)}
+                            </p>
+                          </ThongTinChieu>
+                        );
+                      })}
+                    </LichChieu>
+                  </div>
+                </DivPhim>
               );
             })}
-          </div >
+          </div>
         ),
       };
     });
@@ -139,7 +134,9 @@ const RapTemplate = () => {
   }, [dispatch]);
   return (
     <div>
-      <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
+      <h1 className="mt-5 text-4xl font-bold text-center">
+        HỆ THỐNG RẠP - LỊCH CHIẾU
+      </h1>
       <HeThongRap>
         <Tabs
           tabPosition="left"
@@ -159,7 +156,8 @@ const HeThongRap = styled.div`
   width: 80%;
   margin: auto;
   margin-top: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow-y: scroll;
   &::-webkit-scrollbar-button {
     display: none;
@@ -173,6 +171,9 @@ const DivPhim = styled.div`
     border-radius: 4px;
     max-height: 220px;
   }
+  @media (max-width: 1185px) {
+    display: block;
+  }
 `;
 const ThongTinChieu = styled.div`
   border-radius: 8px;
@@ -185,3 +186,4 @@ const ThongTinChieu = styled.div`
     transform: scale(1.03);
   }
 `;
+const LichChieu = styled.div``;
