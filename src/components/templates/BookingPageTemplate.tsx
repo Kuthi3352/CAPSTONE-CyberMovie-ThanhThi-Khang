@@ -106,7 +106,7 @@ export const BookingPageTemplate = () => {
         <div className="text-3xl font-bold">
           Thành tiền:{" "}
           <span className="!text-2xl text-red-500 ml-[30px]">
-            {chairBookeds.reduce((total, ghe) => {
+            {chairBookings.reduce((total, ghe) => {
               return (total += ghe.giaVe);
             }, 0)}{" "}
             VND

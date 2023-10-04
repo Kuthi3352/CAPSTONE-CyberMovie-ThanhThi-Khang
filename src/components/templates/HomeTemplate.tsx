@@ -1,4 +1,3 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,13 +13,11 @@ import { Button } from "antd";
 import { generatePath, useNavigate } from "react-router-dom";
 import { PATH } from "constant";
 
-
 const HomeTemplate = () => {
   const navigation = useNavigate();
   const { listPhim, bannerList, listSearch } = useSelector(
     (state: RootState) => state.QuanLyPhim
   );
-
 
   return (
     <Container>
@@ -50,41 +47,39 @@ const HomeTemplate = () => {
 
       <Container_2>
         <PhimTypeButton></PhimTypeButton>
-        <div className="grid grid-cols-5 gap-5">
-          {
-            (listSearch ? listSearch : listPhim)?.map(
-              (item) => {
-                return (
-                  <Card key={item.maPhim} className="card-item">
-                    <div className="img ">
-                      <img src={item.hinhAnh} alt="" />
-                    </div>
-                    <div className="phim-content flex justify-between">
-                      <div>
-                        <p className="font-bold">{item.tenPhim}</p>
-                        <p className="italic">Rating: {item.danhGia}</p>
-                      </div>
-                      <div>
-                        <Badge count={item?.hot ? "Hot" : undefined}>
-                          <Button
-                            type="default" className=""
-                            onClick={() => {
-                              const path = generatePath(PATH.detail, {
-                                movieID: item.maPhim,
-                              });
-                              console.log("path", path);
-                              navigation(path);
-                            }}
-                          >
-                            Detail
-                          </Button>
-                        </Badge>
-                      </div>
-                    </div>
-                  </Card>
-                );
-              }
-            )}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-5  ">
+          {(listSearch ? listSearch : listPhim)?.map((item) => {
+            return (
+              <Card key={item.maPhim} className="card-item">
+                <div className="img ">
+                  <img src={item.hinhAnh} alt="" />
+                </div>
+                <div className="phim-content flex justify-between">
+                  <div>
+                    <p className="font-bold">{item.tenPhim}</p>
+                    <p className="italic">Rating: {item.danhGia}</p>
+                  </div>
+                  <div>
+                    <Badge count={item?.hot ? "Hot" : undefined}>
+                      <Button
+                        type="default"
+                        className=""
+                        onClick={() => {
+                          const path = generatePath(PATH.detail, {
+                            movieID: item.maPhim,
+                          });
+                          console.log("path", path);
+                          navigation(path);
+                        }}
+                      >
+                        Detail
+                      </Button>
+                    </Badge>
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </Container_2>
     </Container>
@@ -96,7 +91,6 @@ export default HomeTemplate;
 const Container = styled.div`
   width: 100%;
   margin: auto;
-  
 `;
 
 const Container_2 = styled.div`
