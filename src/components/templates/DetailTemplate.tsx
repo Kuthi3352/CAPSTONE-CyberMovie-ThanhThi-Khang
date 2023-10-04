@@ -16,7 +16,7 @@ export const DetailTemplate = () => {
 
 
   return (
-    <div className="!w-4/5 m-auto px-4" key={movieDetail?.maPhim}>
+    <div className="!w-4/5 m-auto px-4 no-header" key={movieDetail?.maPhim}>
       <div className="flex mt-20">
         <div className="bg-auto">
           <img

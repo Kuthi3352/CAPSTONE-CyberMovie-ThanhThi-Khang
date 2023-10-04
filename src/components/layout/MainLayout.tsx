@@ -17,7 +17,7 @@ export const MainLayout = () => {
   return (
     <div>
       <Header></Header>
-      <MainWrapper id="main-content">
+      <MainWrapper id="main-content" >
         <Outlet></Outlet>
       </MainWrapper>
       <Footer />

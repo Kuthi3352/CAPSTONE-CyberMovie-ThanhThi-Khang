@@ -4,30 +4,33 @@
   --primary-color: #e50914;
   --secondary-color: #111;
 }
-
+.no-header{
+  padding-top: 70px;
+}
 .ant-card-body {
   padding: 0px !important;
 }
 .card-item {
   transition: 0.5s;
   border-radius: 8px;
-  overflow: hidden;
 }
 .card-item:hover {
   transform: scale(1.07);
 }
 .card-item .img {
+  
   width: 100%;
-  height: 300px;
+  height: 270px;
   margin-bottom: 5px!important;
 }
 .card-item .phim-content {
   margin-top: 10px;
-  padding: 10px;
+  padding: 20px 10px;
   
 }
 .card-item img {
-  max-height: 300px;
+  border-radius: 8px 8px 0 0 ;
+  max-height: 270px;
   margin: auto;
   width: 100%;
 }
