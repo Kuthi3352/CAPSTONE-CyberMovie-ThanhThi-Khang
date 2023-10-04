@@ -15,7 +15,7 @@ export const BookingPageTemplate = () => {
   const { DanhSachPhongVe } = useSelector(
     (state: RootState) => state.DanhSachPhongVe
   );
-  
+
   const { lichchieuID } = useParams();
   const { chairBookings, chairBookeds } = useSelector(
     (state: RootState) => state.Booking
@@ -25,7 +25,7 @@ export const BookingPageTemplate = () => {
     maLichChieu: Number(lichchieuID),
     danhSachVe: [],
   };
-  
+
   useEffect(() => {
     dispatch(DanhSachPhongVeThunk(lichchieuID));
   }, [dispatch, lichchieuID]);
@@ -37,12 +37,18 @@ export const BookingPageTemplate = () => {
           return (
             <SoGhe
               key={index}
-              className={cln("ml-auto hover:bg-sky-700","grid grid-cols-12 gap-2", {
-                booking: chairBookings.find(
-                  (item) => item.tenGhe === ghe.tenGhe
-                ),
-                booked: chairBookeds.find((item) => item.tenGhe === ghe.tenGhe),
-              })}
+              className={cln(
+                "ml-auto hover:bg-sky-700",
+                "grid grid-cols-12 gap-2",
+                {
+                  booking: chairBookings.find(
+                    (item) => item.tenGhe === ghe.tenGhe
+                  ),
+                  booked: chairBookeds.find(
+                    (item) => item.tenGhe === ghe.tenGhe
+                  ),
+                }
+              )}
               onClick={() => {
                 dispatch(BookingAction.setChairBookings(ghe));
               }}
@@ -136,17 +142,16 @@ const SoGhe = styled.div`
   background-color: gray;
   color: white;
   &.booking {
-      background-color: orange!important;
-      color: white;
-      border: transparent;
-    }
-  
+    background-color: orange !important;
+    color: white;
+    border: transparent;
+  }
+
   &.booked {
     background-color: red !important;
     color: white;
     border: transparent;
     pointer-events: none;
-  
   }
 `;
 
