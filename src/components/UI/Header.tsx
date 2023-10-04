@@ -192,7 +192,7 @@ const Container = styled.header`
       border-radius: 6px;
       overflow: hidden;
       button {
-        height: 46px !important;
+        height: 35px !important;
         border: none;
         border-radius: initial;
         background: #111;
