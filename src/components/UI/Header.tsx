@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
 import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
+import { toVie } from "utils";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -20,105 +21,103 @@ const Header = () => {
   return (
     <div>
       <Container>
-        <div className="header-content">
-          <h1
-            className="ms-5 logo"
-            onClick={() => {
-              dispatch(QuanLyPhimSliceActions.searchlist(undefined))
-              navigate("/");
-            }}
-          >
-            CYBER<span className="text-red-500">MOVIE</span>
-          </h1>
-          <div className="nav">
-            <NavLink to={PATH.searchPage} className="nav-link">
-              PHIM
-            </NavLink>
-            <NavLink to={PATH.heThongRap} className="nav-link">
-              RẠP - LỊCH CHIẾU
-            </NavLink>
-          </div>
-          <div className="search">
-            <Input
-              value={inputValue || ""}
-              placeholder="Tìm kiếm tên phim"
-              onChange={(ev) => {
-                const value = ev.target.value;
-                setInputValue(value);
-              }}
-            />
-            <Button
+      <div className="header-content">
+            <h1
+              className="ms-5 logo"
               onClick={() => {
-                if (inputValue !== "") {
-                  const searchList = listPhim?.filter((item) =>
-                    item.tenPhim
-                      .toLowerCase()
-                      .includes(inputValue?.toLowerCase())
-                  );
-                  dispatch(QuanLyPhimSliceActions.searchlist(searchList));
-                } else {
-                  dispatch(QuanLyPhimSliceActions.searchlist(undefined));
-                }
-                navigate(PATH.searchPage)
+                dispatch(QuanLyPhimSliceActions.searchlist(undefined))
+                navigate("/");
               }}
             >
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </Button>
+              CYBER<span className="text-red-500">MOVIE</span>
+            </h1>
+            <div className="nav">
+              <NavLink to={PATH.heThongRap} className="nav-link">
+                RẠP - LỊCH CHIẾU
+              </NavLink>
+              <NavLink to={PATH.searchPage} className="nav-link">
+                PHIM
+              </NavLink>
+            </div>
+            <div className="search">
+              <Input
+                value={inputValue || ""}
+                placeholder="Tìm kiếm tên phim"
+                onChange={(ev) => {
+                  const value = ev.target.value;
+                  setInputValue(value);
+                }}
+              />
+              <Button
+                onClick={() => {
+                  if (inputValue !== "") {
+                    const searchList = listPhim?.filter((item) =>
+                      toVie(item.tenPhim).includes(toVie(inputValue))
+                    );
+                    dispatch(QuanLyPhimSliceActions.searchlist(searchList));
+                  } else {
+                    dispatch(QuanLyPhimSliceActions.searchlist(undefined));
+                  }
+                  navigate(PATH.searchPage)
+                }}
+              >
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="auth">
-          {!accessToken && (
-            <p>
-              <span
-                className="span-hover ms-5 align-middle"
-                onClick={() => navigate(PATH.login)}
+          <div className="auth">
+            {!accessToken && (
+              <p>
+                <span
+                  className="span-hover ms-5 align-middle"
+                  onClick={() => navigate(PATH.login)}
+                >
+                  Đăng nhập
+                </span>
+                <span className="align-middle"> | </span>
+                <span
+                  className="span-hover align-middle"
+                  onClick={() => navigate(PATH.register)}
+                >
+                  Đăng ký
+                </span>
+              </p>
+            )}
+            {!!accessToken && (
+              <Popover
+                content={
+                  <div className="p-10">
+                    <p className="font-600 text-16">{user?.hoTen}</p>
+                    <hr className="my-16" />
+                    <p
+                      className="text-16 cursor-pointer"
+                      onClick={() => navigate(PATH.account)}
+                    >
+                      Thông tin tài khoản
+                    </p>
+                    <hr className="my-16" />
+                    <Button
+                      className="!h-[46px]"
+                      type="primary"
+                      onClick={() => dispatch(QuanLyNguoiDungActions.logOut())}
+                    >
+                      <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>
+                      <span className="ml-10 font-500 text-16">Đăng xuất</span>
+                    </Button>
+                  </div>
+                }
+                trigger="click"
+                arrow={false}
               >
-                Đăng nhập
-              </span>
-              <span className="align-middle"> | </span>
-              <span
-                className="span-hover align-middle"
-                onClick={() => navigate(PATH.register)}
-              >
-                Đăng ký
-              </span>
-            </p>
-          )}
-          {!!accessToken && (
-            <Popover
-              content={
-                <div className="p-10">
-                  <p className="font-600 text-16">{user?.hoTen}</p>
-                  <hr className="my-16" />
-                  <p
-                    className="text-16 cursor-pointer"
-                    onClick={() => navigate(PATH.account)}
-                  >
-                    Thông tin tài khoản
-                  </p>
-                  <hr className="my-16" />
-                  <Button
-                    className="!h-[46px]"
-                    type="primary"
-                    onClick={() => dispatch(QuanLyNguoiDungActions.logOut())}
-                  >
-                    <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>
-                    <span className="ml-10 font-500 text-16">Đăng xuất</span>
-                  </Button>
-                </div>
-              }
-              trigger="click"
-              arrow={false}
-            >
-              <Avatar
-                size="large"
-                className="!ml-24 !bg-[var(--primary-color)]"
-              >
-                <i className="fa-regular fa-user text-20"></i>
-              </Avatar>
-            </Popover>
-          )}
-        </div>
+                <Avatar
+                  size="large"
+                  className="!ml-24 !bg-[var(--primary-color)]"
+                >
+                  <i className="fa-regular fa-user text-20"></i>
+                </Avatar>
+              </Popover>
+            )}
+          </div>
       </Container>
     </div>
   );
@@ -127,7 +126,11 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
-  position: sticky;
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
   border-radius: 8px;
   height: 70px;
   padding: 15px 0;
@@ -144,7 +147,7 @@ const Container = styled.header`
     height: 100%;
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     h1 {
       font-weight: 900;

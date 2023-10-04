@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Card } from "components";
+import { Badge, Card } from "components";
 import PhimTypeButton from "components/UI/PhimTypeButton";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const HomeTemplate = () => {
   const { listPhim, bannerList, listSearch } = useSelector(
     (state: RootState) => state.QuanLyPhim
   );
- 
+
 
   return (
     <Container>
@@ -50,39 +50,41 @@ const HomeTemplate = () => {
 
       <Container_2>
         <PhimTypeButton></PhimTypeButton>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-5 gap-5">
           {
-          (listSearch ? listSearch : listPhim)?.map(
-            (item) => {
-              return (
-                <Card key={item.maPhim} className="card-item">
-                  <div className="img ">
-                    <img src={item.hinhAnh} alt="" />
-                  </div>
-                  <div className="phim-content flex justify-between">
-                    <div>
-                      <p className="font-bold">{item.tenPhim}</p>
-                      <p className="italic">Rating: {item.danhGia}</p>
+            (listSearch ? listSearch : listPhim)?.map(
+              (item) => {
+                return (
+                  <Card key={item.maPhim} className="card-item">
+                    <div className="img ">
+                      <img src={item.hinhAnh} alt="" />
                     </div>
-                    <div>
-                      <Button
-                        type="primary"
-                        onClick={() => {
-                          const path = generatePath(PATH.detail, {
-                            movieID: item.maPhim,
-                          });
-                          console.log("path", path);
-                          navigation(path);
-                        }}
-                      >
-                        Detail
-                      </Button>
+                    <div className="phim-content flex justify-between">
+                      <div>
+                        <p className="font-bold">{item.tenPhim}</p>
+                        <p className="italic">Rating: {item.danhGia}</p>
+                      </div>
+                      <div>
+                        <Badge count={item?.hot ? "Hot" : undefined}>
+                          <Button
+                            type="default" className=""
+                            onClick={() => {
+                              const path = generatePath(PATH.detail, {
+                                movieID: item.maPhim,
+                              });
+                              console.log("path", path);
+                              navigation(path);
+                            }}
+                          >
+                            Detail
+                          </Button>
+                        </Badge>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              );
-            }
-          )}
+                  </Card>
+                );
+              }
+            )}
         </div>
       </Container_2>
     </Container>
@@ -92,7 +94,7 @@ const HomeTemplate = () => {
 export default HomeTemplate;
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   margin: auto;
   
 `;
