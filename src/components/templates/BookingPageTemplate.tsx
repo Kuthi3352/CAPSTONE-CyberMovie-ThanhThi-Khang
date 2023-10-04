@@ -31,8 +31,8 @@ export const BookingPageTemplate = () => {
   }, [dispatch, lichchieuID]);
 
   return (
-    <ContainerBooking className="!flex !mt-20">
-      <div className="w-3/6 mx-[40px] grid grid-cols-16 gap-4">
+    <ContainerBooking className="!flex no-header">
+      <div className="w-3/6 mx-[40px] grid grid-cols-16 gap-4 mt-5">
         {DanhSachPhongVe?.danhSachGhe.map((ghe, index: number) => {
           return (
             <SoGhe
@@ -52,7 +52,7 @@ export const BookingPageTemplate = () => {
           );
         })}
       </div>
-      <div className="w-3/6">
+      <div className="w-3/6 mt-5">
         <div className="flex">
           <div className="w-3/12">
             <img
