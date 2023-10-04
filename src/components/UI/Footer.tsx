@@ -24,8 +24,8 @@ export const Footer = () => {
             <i className="fa-brands fa-youtube"></i>
           </NavLink>
         </div>
-        <div className="mt-[40px] flex gap-[100px] info">
-          <div>
+        <div className="mt-[40px] grid grid-cols-2 md:grid-cols-4 gap-[90px] info">
+          <div className="">
             <p className="font-700 text-20">
               <span className="text-[var(--primary-color)]">CYBER</span>
               MOVIE
@@ -35,7 +35,7 @@ export const Footer = () => {
             <NavLink to="">Lịch chiếu</NavLink>
             <NavLink to="">Khuyến mãi</NavLink>
           </div>
-          <div>
+          <div className="">
             <p className="font-700 text-20">
               <span>THÔNG TIN</span>
             </p>
@@ -44,8 +44,8 @@ export const Footer = () => {
             <NavLink to="">Hỏi đáp</NavLink>
             <NavLink to="">Liên hệ</NavLink>
           </div>
-          <div>
-            <p className="font-700 text-20">
+          <div className="chinhSach">
+            <p className="font-700 text-20 ">
               <span>CHÍNH SÁCH VÀ QUY ĐỊNH</span>
             </p>
             <NavLink to="">Quy định chung</NavLink>
@@ -53,13 +53,13 @@ export const Footer = () => {
             <NavLink to="">Chính sách bảo mật</NavLink>
             <NavLink to="">Thông tin công ty</NavLink>
           </div>
-          <div>
+          <div className="chinhSach">
             <p className="font-700 text-20">
               <span>CHĂM SÓC KHÁCH HÀNG</span>
             </p>
-            <p className="mt-16">Hotline: 1900 0000</p>
-            <p className="mt-16">Giờ làm việc: 8:00 - 22:00</p>
-            <p className="mt-16">Email hỗ trợ: cskh@gmail.com</p>
+            <p className="mt-16 hotLine">Hotline: 1900 0000</p>
+            <p className="mt-16 hotLine">Giờ làm việc: 8:00 - 22:00</p>
+            <p className="mt-16 hotLine">Email hỗ trợ: cskh@gmail.com</p>
           </div>
         </div>
       </div>
@@ -78,6 +78,7 @@ const Container = styled.footer`
       color: #111;
       display: flex;
       gap: 30px;
+      justify-content: center;
       i {
         cursor: pointer;
         transition: all 0.3s ease-in-out;
@@ -96,6 +97,59 @@ const Container = styled.footer`
           color: var(--primary-color);
           text-shadow: var(--primary-color) 0 0 1px;
           /* font-weight: 600; */
+        }
+      }
+    }
+    @media (max-width: 1409px) {
+      .info {
+        p {
+          font-size: 18px;
+        }
+        a {
+          font-size: 15px;
+        }
+        .hotLine {
+          font-size: 15px;
+        }
+      }
+    }
+    @media (max-width: 1305px) {
+      .info {
+        gap: 60px;
+        p {
+          font-size: 15px;
+        }
+        a {
+          font-size: 12px;
+        }
+        .hotLine {
+          font-size: 12px;
+        }
+      }
+    }
+    @media (max-width: 1059px) {
+      .info {
+        gap: 40px;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    @media (max-width: 947px) {
+      .info {
+        gap: 15px;
+        p {
+          font-size: 11px;
+        }
+        .hotLine {
+          font-size: 10px;
+        }
+      }
+    }
+    @media (max-width: 360px) {
+      .info {
+        p {
+          font-size: 10px;
         }
       }
     }
