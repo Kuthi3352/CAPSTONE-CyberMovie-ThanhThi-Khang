@@ -8,6 +8,8 @@ import { LoginSchema, LoginSchemaType } from "schemas/LoginSchema";
 import { useAppDispatch } from "store";
 import { loginThunk } from "store/QuanLyNguoiDung/thunk";
 import { handleError } from "utils";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginTemplate = () => {
   const dispatch = useAppDispatch();
@@ -59,7 +61,7 @@ const LoginTemplate = () => {
         type="primary"
         htmlType="submit"
         danger
-        // loading={isFetchingLogin}
+      // loading={isFetchingLogin}
       >
         Đăng nhập
       </Button>
