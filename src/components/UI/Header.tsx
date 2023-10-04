@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
 import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
+import { toVie } from "utils";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -31,11 +32,11 @@ const Header = () => {
             CYBER<span className="text-red-500">MOVIE</span>
           </h1>
           <div className="nav">
-            <NavLink to={PATH.searchPage} className="nav-link">
-              PHIM
-            </NavLink>
             <NavLink to={PATH.heThongRap} className="nav-link">
               RẠP - LỊCH CHIẾU
+            </NavLink>
+            <NavLink to={PATH.searchPage} className="nav-link">
+              PHIM
             </NavLink>
           </div>
           <div className="search">
@@ -51,9 +52,7 @@ const Header = () => {
               onClick={() => {
                 if (inputValue !== "") {
                   const searchList = listPhim?.filter((item) =>
-                    item.tenPhim
-                      .toLowerCase()
-                      .includes(inputValue?.toLowerCase())
+                  toVie(item.tenPhim).includes(toVie(inputValue))
                   );
                   dispatch(QuanLyPhimSliceActions.searchlist(searchList));
                 } else {
@@ -144,7 +143,7 @@ const Container = styled.header`
     height: 100%;
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     h1 {
       font-weight: 900;
