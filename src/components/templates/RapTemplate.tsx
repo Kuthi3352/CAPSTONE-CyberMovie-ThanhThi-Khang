@@ -138,7 +138,7 @@ const RapTemplate = () => {
     dispatch(ThongTinLichChieuThunk());
   }, [dispatch]);
   return (
-    <div>
+    <div className="no-header">
       <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
       <HeThongRap>
         <Tabs

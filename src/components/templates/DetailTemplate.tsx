@@ -17,23 +17,23 @@ export const DetailTemplate = () => {
 
   return (
     <div className="!w-4/5 m-auto px-4 no-header" key={movieDetail?.maPhim}>
-      <div className="flex mt-20">
+      <div className="flex mt-20 gap-22">
         <div className="bg-auto">
           <img
             src={movieDetail?.hinhAnh}
             className="max-h-[500px] max-w-xs mr-[30px] "
           />
         </div>
-        <div className="mr-[500px] ">
+        <div className="mr-[500px]">
           <h1 className="text-3xl font-bold">{movieDetail?.tenPhim}</h1>
-          <p className="font-medium text-xl my-[20px]">
+          <p className="font-medium my-[20px]">
             Khởi chiếu vào: {movieDetail?.ngayKhoiChieu.slice(0, 10)}
           </p>
-          <p className="font-medium text-xl my-[20px]">Thời lượng: 120 phút</p>
-          <p className="font-medium text-xl my-[20px]">
+          <p className="font-medium my-[20px]">Thời lượng: 120 phút</p>
+          <p className="font-medium my-[20px]">
             Ngôn ngữ: Tiếng Anh- Phụ đề Tiếng Việt{" "}
           </p>
-          <p className="font-medium text-2xl my-[20px]">
+          <p className="my-[20px]">
             Nội Dung: {movieDetail?.moTa}
           </p>
           <div className="flex">
