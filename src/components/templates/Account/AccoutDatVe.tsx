@@ -13,5 +13,13 @@ export const AccoutDatVe = () => {
   useEffect(() => {
     dispatch(checkLoginThunk());
   }, [dispatch]);
-  return <div>AccoutDatVe</div>;
+  return <div>
+    <form>
+      {/* {
+        thongTinVe.thongTinDatVe.map((ve) => {
+          return <div>{ve.tenGhe}</div>
+        })
+      } */}
+    </form>
+  </div>;
 };
