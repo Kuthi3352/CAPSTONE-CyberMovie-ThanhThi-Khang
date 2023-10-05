@@ -1,5 +1,6 @@
 import { Button, Card } from "components"
 import { PATH } from "constant"
+// import { useAuth } from "hooks"
 import { useSelector } from "react-redux"
 import { generatePath, useNavigate } from "react-router-dom"
 import { RootState } from "store"
@@ -10,6 +11,9 @@ import styled from "styled-components"
 const SearchPageTemplate = () => {
   const { listSearch,listPhim } = useSelector((state: RootState) => state.QuanLyPhim)
   const navigation = useNavigate()
+  // const {user,accessToken} = useAuth()
+  // console.log(user);
+  
   return (
     <Container>
       {

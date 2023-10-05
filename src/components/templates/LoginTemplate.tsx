@@ -8,6 +8,8 @@ import { LoginSchema, LoginSchemaType } from "schemas/LoginSchema";
 import { RootState, useAppDispatch } from "store";
 import { loginThunk } from "store/QuanLyNguoiDung/thunk";
 import { handleError } from "utils";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginTemplate = () => {
   const dispatch = useAppDispatch();

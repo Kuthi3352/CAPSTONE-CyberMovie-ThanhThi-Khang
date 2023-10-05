@@ -9,9 +9,9 @@ const api = apiInstance({
 });
 
 export const QuanLyNguoiDungServices = {
-  register: (data: RegisterSchemaType) => api.post("/DangKy", data),
+  register: (data: RegisterSchemaType) => api.post<ApiResponse<RegisterSchemaType>>("/DangKy", data),
   login: (data: LoginSchemaType) =>
-    api.post<ApiResponse<UserLogin>>("DangNhap", data),
+    api.post<ApiResponse<UserLogin>>("/DangNhap", data),
   getUserLogin: () =>
     api.post<ApiResponse<getUserLoginType>>("/ThongTinTaiKhoan"),
 };
