@@ -15,6 +15,7 @@ export const BookingPageTemplate = () => {
   const { DanhSachPhongVe } = useSelector(
     (state: RootState) => state.DanhSachPhongVe
   );
+  
 
   const { lichchieuID } = useParams();
   const { chairBookings, chairBookeds } = useSelector(
@@ -31,7 +32,7 @@ export const BookingPageTemplate = () => {
   }, [dispatch, lichchieuID]);
 
   return (
-    <ContainerBooking className="header">
+    <ContainerBooking className="no-header">
       <div className="xl:w-3/6 lg:mx-[40px] grid grid-cols-16 gap-4 mt-5 ">
         {DanhSachPhongVe?.danhSachGhe.map((ghe, index: number) => {
           return (
@@ -39,7 +40,7 @@ export const BookingPageTemplate = () => {
               key={index}
               className={cln(
                 "ml-auto hover:bg-sky-700",
-                "grid grid-cols-12 gap-2",
+                "grid grid-cols-12 gap-2", 
                 {
                   booking: chairBookings.find(
                     (item) => item.tenGhe === ghe.tenGhe
@@ -47,6 +48,7 @@ export const BookingPageTemplate = () => {
                   booked: chairBookeds.find(
                     (item) => item.tenGhe === ghe.tenGhe
                   ),
+                  vip: ghe.loaiGhe==='Vip'
                 }
               )}
               onClick={() => {
@@ -167,12 +169,14 @@ const SoGhe = styled.div`
     color: white;
     border: transparent;
   }
-
   &.booked {
     background-color: rgb(239, 68, 68) !important;
     color: white;
     border: transparent;
     pointer-events: none;
+  }
+  &.vip {
+    background-color: #22D3EE;
   }
   @media (max-width: 1339px) {
     width: 25px;
@@ -302,5 +306,5 @@ display:flex;
       }
     }
   }
-  }
+  
 `;

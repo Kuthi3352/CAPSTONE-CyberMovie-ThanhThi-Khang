@@ -1,21 +1,15 @@
-// import styled from 'styled-components'
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "components";
 import { useAuth } from "hooks";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { AccountSchema, AccountSchemaType } from "schemas";
 import { useAppDispatch } from "store";
 import { UpdateUserThunk } from "store/CapNhatUser/thunk";
 
-// import { UpdateUserThunk } from "store/capNhatUser";
-
-// import styled from 'styled-components'
-
 export const AccountInfo = () => {
   const dispatch = useAppDispatch();
-
   const { user } = useAuth();
   const {
     reset,
@@ -28,7 +22,6 @@ export const AccountInfo = () => {
   });
 
   const onSubmit: SubmitHandler<AccountSchemaType> = (value) => {
-    console.log("value: ", value);
     dispatch(UpdateUserThunk(value));
   };
 
@@ -100,12 +93,3 @@ export const AccountInfo = () => {
   );
 };
 
-// const InputS = styled(Input)`
-//     label {
-//         color: #111;
-//     }
-
-//     input {
-
-//     }
-// `

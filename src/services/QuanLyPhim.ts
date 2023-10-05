@@ -13,4 +13,5 @@ export const QuanLyPhimServices = {
     api.get<ApiResponse<ThongTinPhim[]>>(
       `/LayDanhSachPhim/${query}`
     ),
+  detailPhim: (query:string)=>api.get<ApiResponse<ThongTinPhim>>(`/LayThongTinPhim?MaPhim=${query}`)
 };

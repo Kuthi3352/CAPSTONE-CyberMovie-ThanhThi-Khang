@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Banner } from "types/BannerObjectType";
-import { BannerThunk, DanhSachPhimThunk } from "./thunk";
+import { BannerThunk, DanhSachPhimThunk, DetailPhimThunk } from "./thunk";
 import { ThongTinPhim } from "types/DanhSachPhimType";
 
 type StateType = {
   bannerList?: Banner[];
   listPhim?: ThongTinPhim[];
   listSearch?: ThongTinPhim[];
-  isFetchingMovieList?: boolean
+  isFetchingMovieList?: boolean;
+  thongTinPhim?: ThongTinPhim;
 };
 
 const initialState: StateType = {
@@ -29,15 +30,18 @@ const QuanLyPhimSlice = createSlice({
       })
       .addCase(DanhSachPhimThunk.fulfilled, (state, { payload }) => {
         state.listPhim = payload;
-        state.isFetchingMovieList = false
+        state.isFetchingMovieList = false;
       })
       .addCase(DanhSachPhimThunk.pending, (state) => {
-        state.isFetchingMovieList = true
-    })
-    .addCase(DanhSachPhimThunk.rejected, (state) => {
-      state.isFetchingMovieList = false
-  })
-  }
+        state.isFetchingMovieList = true;
+      })
+      .addCase(DanhSachPhimThunk.rejected, (state) => {
+        state.isFetchingMovieList = false;
+      })
+      .addCase(DetailPhimThunk.fulfilled, (state, { payload }) => {
+        state.thongTinPhim = payload
+      });
+  },
 });
 
 export const {

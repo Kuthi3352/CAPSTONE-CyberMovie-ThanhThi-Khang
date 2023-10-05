@@ -5,13 +5,13 @@ import { checkLoginThunk } from "store/QuanLyNguoiDung/thunk";
 
 export const AccoutDatVe = () => {
   const dispatch = useAppDispatch();
-  const { userLogin } = useSelector(
+  const { userLogin2 } = useSelector(
     (state: RootState) => state.QuanLyNguoiDung
   );
-  console.log("use", userLogin);
+  console.log("use", userLogin2.thongTinDatVe);
 
   useEffect(() => {
     dispatch(checkLoginThunk());
   }, [dispatch]);
-  return <div>AccoutDatVe</div>;
+  return <div></div>;
 };

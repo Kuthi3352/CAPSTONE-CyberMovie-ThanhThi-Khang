@@ -5,7 +5,8 @@ import { getAccessToken } from "utils";
 type StateType = {
   accessToken?: string;
   userLogin?: UserLogin | getUserLoginType;
-  isFetchingLogin?: boolean
+  userLogin2?: getUserLoginType;
+  isFetchingLogin?: boolean;
 };
 const initialState: StateType = {
   accessToken: getAccessToken(),
@@ -17,28 +18,28 @@ const quanLyNguoiDungSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state) => {
-      setTimeout(()=>{state.accessToken = undefined;
-        state.userLogin = undefined;
-        localStorage.removeItem("ACCESSTOKEN");},1500) 
+      state.accessToken = undefined;
+      state.userLogin = undefined;
+      localStorage.removeItem("ACCESSTOKEN");
     },
   },
   extraReducers(builder) {
     builder
-    .addCase(loginThunk.pending, (state) => {
-      state.isFetchingLogin = true
-  })
-  .addCase(loginThunk.rejected, (state) => {
-      state.isFetchingLogin = false
-  })
-  .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        localStorage.setItem("ACCESSTOKEN", payload.accessToken)
-        
+      .addCase(loginThunk.pending, (state) => {
+        state.isFetchingLogin = true;
+      })
+      .addCase(loginThunk.rejected, (state) => {
+        state.isFetchingLogin = false;
+      })
+      .addCase(loginThunk.fulfilled, (state, { payload }) => {
+        localStorage.setItem("ACCESSTOKEN", payload.accessToken);
         state.accessToken = payload.accessToken;
         state.userLogin = payload;
         state.isFetchingLogin = false;
       })
-  .addCase(checkLoginThunk.fulfilled, (state, { payload }) => {
+      .addCase(checkLoginThunk.fulfilled, (state, { payload }) => {
         state.userLogin = payload;
+        state.userLogin2 = payload;
       });
   },
 });

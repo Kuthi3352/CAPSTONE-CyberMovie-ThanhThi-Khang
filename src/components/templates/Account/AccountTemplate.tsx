@@ -3,8 +3,8 @@ import { AccountInfo } from "./AccountInfo";
 
 export const AccountTemplate = () => {
   return (
-    <div>
-      <Tabs
+    <div className="no-header">
+      <Tabs className="pt-20"
         tabPosition="left"
         items={[
           {

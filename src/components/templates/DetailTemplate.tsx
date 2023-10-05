@@ -1,37 +1,37 @@
 import { Button } from "antd";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useNavigate, useParams } from "react-router-dom";
-import { RootState } from "store";
+import { RootState, useAppDispatch } from "store";
+import { DetailPhimThunk } from "store/QuanLyPhim";
 import styled from "styled-components";
 
 export const DetailTemplate = () => {
   const params = useParams();
-  const { listPhim } = useSelector((state: RootState) => state.QuanLyPhim);
-
+  const dispatch = useAppDispatch()
+  const { thongTinPhim } = useSelector((state: RootState) => state.QuanLyPhim);
+  
   const navigate = useNavigate();
-  // detail movied
-  const movieDetail = listPhim?.find(
-    (e) => e.maPhim === Number(params.movieID)
-  );
-  console.log(movieDetail);
-
+  useEffect(() => {
+    dispatch(DetailPhimThunk(params.movieID))
+  }, [dispatch, params.movieID])
   return (
     <Detail>
-      <div className="!w-4/5 m-auto px-4" key={movieDetail?.maPhim}>
+      <div className="!w-4/5 m-auto px-4" key={thongTinPhim?.maPhim}>
         <div className="flex justify-center mt-20 Detail_body">
           <div className="bg-autow w-[25%] Detail_Img">
             <img
-              src={movieDetail?.hinhAnh}
+              src={thongTinPhim?.hinhAnh}
               className="max-h-[500px] max-w-xs mr-[30px] "
             />
           </div>
           <div className="w-[40%] Detail_content ">
             <h1 className="text-3xl font-bold !text-red-500">
-              {movieDetail?.tenPhim}
+              {thongTinPhim?.tenPhim}
             </h1>
             <p className="  my-[20px] font-medium">
               <span className="text-green-500  text-xl">Khởi chiếu vào:</span>{" "}
-              {movieDetail?.ngayKhoiChieu.slice(0, 10)}
+              {thongTinPhim?.ngayKhoiChieu.slice(0, 10)}
             </p>
             <p className="  my-[20px] font-medium">
               <span className="text-green-500  text-xl">Thời lượng:</span> 120
@@ -43,7 +43,7 @@ export const DetailTemplate = () => {
             </p>
             <p className=" text-2xl my-[20px] font-medium">
               <span className="text-green-500 ">Nội Dung:</span>{" "}
-              {movieDetail?.moTa.slice(0, 250)}
+              {thongTinPhim?.moTa.slice(0, 250)}
             </p>
             <div className="flex">
               <Button type="primary" danger className="mr-5 !font-medium ">
@@ -54,9 +54,9 @@ export const DetailTemplate = () => {
                 danger
                 className="!font-medium"
                 onClick={() => {
-                  console.log("maphim", movieDetail.maPhim);
+                  console.log("maphim", thongTinPhim.maPhim);
                   const path = generatePath("/thong-tin-chieu/:lichchieuID", {
-                    lichchieuID: `${movieDetail.maPhim}`,
+                    lichchieuID: `${thongTinPhim.maPhim}`,
                   });
                   console.log(path);
                   navigate(path);
@@ -73,6 +73,7 @@ export const DetailTemplate = () => {
   );
 };
 const Detail = styled.div`
+padding-top: 70px!important;
   @media (max-width: 1682px) {
     .Detail_Img {
       width: 32%;

@@ -9,13 +9,8 @@ export const UpdateUserThunk  = createAsyncThunk(
         try {
             const data = await capNhatUser.getUpdateUser(payload)
             dispatch(checkLoginThunk())
-            
-            // console.log('data', data);
-            
             return data.data.content
            
-               
-            
         } catch (err) {
             return rejectWithValue(err)
         }

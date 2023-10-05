@@ -21,19 +21,9 @@ const HomeTemplate = () => {
 
   if (isFetchingMovieList) {
     return (
-      <div className="SkeletonListMovie grid grid-cols-5 !gap-20 !container  !mx-auto s:grid-cols-1  lgM:!grid-cols-3  3xlM:grid-cols-4 ">
-        {[...Array(12)].map(() => {
-          return (
-            <div className="mdM:!ml-[10px] mdM:!gap-0 lgM:ml-[20px] lgM:!gap-5  3xlM:ml-[50px] 3xlM:!gap-10 ">
-              <Card className="3xlM:!w-[250px] !w-[280px] !mt-15  ">
-                <Skeleton.Image className="!w-full !h-[200px] 3xlM:!h-[200px] " />
-                <Skeleton.Input className="!w-full mt-16 " />
-                <Skeleton.Input className="!w-full mt-16 " />
-              </Card>
-            </div>
-          );
-        })}
-      </div>
+      <Container_2 className="no-header">
+        <Skeleton active className="mt-48"></Skeleton>
+      </Container_2>
     );
   }
 
@@ -66,7 +56,7 @@ const HomeTemplate = () => {
       <Container_2>
         <PhimTypeButton></PhimTypeButton>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-5  ">
+        <div className="grid grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-4  ">
           {(listSearch ? listSearch : listPhim)?.map((item) => {
             return (
               <Card key={item.maPhim} className="card-item">
@@ -87,7 +77,6 @@ const HomeTemplate = () => {
                           const path = generatePath(PATH.detail, {
                             movieID: item.maPhim,
                           });
-                          console.log("path", path);
                           navigation(path);
                         }}
                       >

@@ -1,4 +1,5 @@
-import { Badge, Tabs } from "components";
+import { Badge, Button, Tabs } from "components";
+import { PATH } from "constant";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useNavigate } from "react-router-dom";
@@ -39,12 +40,21 @@ const RapTemplate = () => {
         children: (
           <div>
             {danhSachPhimHienTai?.map((item) => {
+              console.log(item.maPhim);
+
               return (
                 <DivPhim className="m-3 p-3" key={item.maPhim}>
                   <div className="w-3/12 align-middle">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
+                    <Button
+                      onClick={() => {
+                        const path = generatePath(PATH.detail, {
+                          movieID: item.maPhim,
+                        });
+                        navigate(path);
+                      }}> Thông tin phim </Button>
                   </div>
                   <div className="w-9/12 p-2">
                     <Badge
@@ -72,14 +82,11 @@ const RapTemplate = () => {
                     <div className="grid grid-cols-4" >
                       {
                         item.lstLichChieuTheoPhim.map((phim) => {
-
-
                           return (
                             <ThongTinChieu
                               key={phim.maLichChieu}
                               className="text-center"
                               onClick={() => {
-                                console.log(phim.maLichChieu);
                                 const path = generatePath(
                                   "/thong-tin-chieu/:lichchieuID",
                                   { lichchieuID: `${phim.maLichChieu}` }
@@ -91,6 +98,13 @@ const RapTemplate = () => {
                               <p className="text-right me-3 font-bold">
                                 {phim.ngayChieuGioChieu.slice(11, 16)}
                               </p>
+                              <Button onClick={() => {
+                                const path = generatePath("/thong-tin-chieu/:lichchieuID", {
+                                  lichchieuID: `${phim.maLichChieu}`,
+                                });
+                                console.log(path);
+                                navigate(path);
+                              }}>Đặt vé</Button>
                             </ThongTinChieu>
                           );
                         })

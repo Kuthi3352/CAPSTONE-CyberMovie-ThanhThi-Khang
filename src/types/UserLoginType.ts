@@ -1,7 +1,6 @@
 export type UserLogin = {
   taiKhoan: string;
   hoTen: string;
-  // matKhau: string;
   email: string;
   soDT: string;
   maNhom: string;
