@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { generatePath, useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { DetailPhimThunk } from "store/QuanLyPhim";
 import styled from "styled-components";
@@ -11,7 +11,6 @@ export const DetailTemplate = () => {
   const dispatch = useAppDispatch()
   const { thongTinPhim } = useSelector((state: RootState) => state.QuanLyPhim);
   
-  const navigate = useNavigate();
   useEffect(() => {
     dispatch(DetailPhimThunk(params.movieID))
   }, [dispatch, params.movieID])
@@ -48,21 +47,6 @@ export const DetailTemplate = () => {
             <div className="flex">
               <Button type="primary" danger className="mr-5 !font-medium ">
                 Xem Trailer
-              </Button>
-              <Button
-                type="primary"
-                danger
-                className="!font-medium"
-                onClick={() => {
-                  console.log("maphim", thongTinPhim.maPhim);
-                  const path = generatePath("/thong-tin-chieu/:lichchieuID", {
-                    lichchieuID: `${thongTinPhim.maPhim}`,
-                  });
-                  console.log(path);
-                  navigate(path);
-                }}
-              >
-                Mua vé ngay
               </Button>
             </div>
           </div>

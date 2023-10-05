@@ -1,9 +1,10 @@
 import { AccoutDatVe, Tabs } from "components";
 import { AccountInfo } from "./AccountInfo";
+import styled from "styled-components";
 
 export const AccountTemplate = () => {
   return (
-    <div className="no-header">
+    <Container className="no-header">
       <Tabs className="pt-20"
         tabPosition="left"
         items={[
@@ -19,6 +20,11 @@ export const AccountTemplate = () => {
           },
         ]}
       />
-    </div>
+    </Container>
   );
 };
+const Container = styled.div`
+  width: 80%;
+  margin: auto;
+  padding-top: 90px!important;
+`

@@ -40,3 +40,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr))!important;
   }
 }
+
+.short-input{
+  width: 80%;
+}

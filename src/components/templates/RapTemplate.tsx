@@ -40,10 +40,8 @@ const RapTemplate = () => {
         children: (
           <div>
             {danhSachPhimHienTai?.map((item) => {
-              console.log(item.maPhim);
-
               return (
-                <DivPhim className="m-3 p-3" key={item.maPhim}>
+                <DivPhim className="m-3 p-5" key={item.maPhim}>
                   <div className="w-3/12 align-middle">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
@@ -98,13 +96,6 @@ const RapTemplate = () => {
                               <p className="text-right me-3 font-bold">
                                 {phim.ngayChieuGioChieu.slice(11, 16)}
                               </p>
-                              <Button onClick={() => {
-                                const path = generatePath("/thong-tin-chieu/:lichchieuID", {
-                                  lichchieuID: `${phim.maLichChieu}`,
-                                });
-                                console.log(path);
-                                navigate(path);
-                              }}>Đặt vé</Button>
                             </ThongTinChieu>
                           );
                         })
@@ -112,7 +103,7 @@ const RapTemplate = () => {
                     </div >
                   </div >
                 </DivPhim >
-              );
+            )
             })}
           </div >
         ),
@@ -128,7 +119,7 @@ const RapTemplate = () => {
         label: <img src={item.logo} style={{ height: 50 }}></img>,
         children: (
           <Tabs
-            tabPosition="left"
+            tabPosition="top"
             items={cumrap}
             onChange={(activeKey) => {
               const listCumRap = getListCumRap();
