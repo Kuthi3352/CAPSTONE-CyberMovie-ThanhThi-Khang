@@ -1,9 +1,17 @@
-// import { useAuth } from "hooks";
-// import { useAppDispatch } from "store";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "store";
+import { useEffect } from "react";
+import { checkLoginThunk } from "store/QuanLyNguoiDung/thunk";
 
 export const AccoutDatVe = () => {
-  // const dispatch = useAppDispatch();
-  // const { user } = useAuth();
+  const dispatch = useAppDispatch();
+  const { userLogin } = useSelector(
+    (state: RootState) => state.QuanLyNguoiDung
+  );
+  console.log("use", userLogin);
 
-  return <div>LichSuDatVe</div>;
+  useEffect(() => {
+    dispatch(checkLoginThunk());
+  }, [dispatch]);
+  return <div>AccoutDatVe</div>;
 };

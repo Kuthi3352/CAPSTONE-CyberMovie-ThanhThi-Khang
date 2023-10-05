@@ -48,6 +48,15 @@ export default {
     gridTemplateColumns: {
       '16': 'repeat(16, minmax(0, 1fr))',
     },
+    screens: {
+      's': {'max': '574px'},
+      'mdM': {'max': '766px'},
+      'lgM': {'max': '1021px'},
+      'xlM': {'max': '1200px'},
+      '2xlM': {'max': '1400px'},
+      '3xlM': {'max': '1535px'},
+
+    }
     
 
     },

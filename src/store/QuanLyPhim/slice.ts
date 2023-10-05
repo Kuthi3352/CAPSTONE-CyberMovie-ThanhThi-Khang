@@ -7,6 +7,7 @@ type StateType = {
   bannerList?: Banner[];
   listPhim?: ThongTinPhim[];
   listSearch?: ThongTinPhim[];
+  isFetchingMovieList?: boolean
 };
 
 const initialState: StateType = {
@@ -28,8 +29,15 @@ const QuanLyPhimSlice = createSlice({
       })
       .addCase(DanhSachPhimThunk.fulfilled, (state, { payload }) => {
         state.listPhim = payload;
-      });
-  },
+        state.isFetchingMovieList = false
+      })
+      .addCase(DanhSachPhimThunk.pending, (state) => {
+        state.isFetchingMovieList = true
+    })
+    .addCase(DanhSachPhimThunk.rejected, (state) => {
+      state.isFetchingMovieList = false
+  })
+  }
 });
 
 export const {

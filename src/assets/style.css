@@ -34,3 +34,9 @@
   margin: auto;
   width: 100%;
 }
+.SkeletonListMovie{
+  @media screen  and (max-width:765){
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr))!important;
+  }
+}
