@@ -67,5 +67,5 @@ export default SearchPageTemplate
 const Container = styled.div`
   width: 80%;
   margin: auto;
-  padding-top: 30px;
+  padding-top: 100px!important;
 `
