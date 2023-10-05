@@ -3,21 +3,39 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Badge, Card } from "components";
+import { Badge, Card, Skeleton, Button } from "components";
 import PhimTypeButton from "components/UI/PhimTypeButton";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { RootState } from "store";
 import { Autoplay } from "swiper/modules";
-import { Button } from "antd";
+
 import { generatePath, useNavigate } from "react-router-dom";
 import { PATH } from "constant";
 
 const HomeTemplate = () => {
   const navigation = useNavigate();
-  const { listPhim, bannerList, listSearch } = useSelector(
+  const { listPhim, bannerList, listSearch, isFetchingMovieList } = useSelector(
     (state: RootState) => state.QuanLyPhim
   );
+
+  if (isFetchingMovieList) {
+    return (
+      <div className="SkeletonListMovie grid grid-cols-5 !gap-20 !container  !mx-auto s:grid-cols-1  lgM:!grid-cols-3  3xlM:grid-cols-4 ">
+        {[...Array(12)].map(() => {
+          return (
+            <div className="mdM:!ml-[10px] mdM:!gap-0 lgM:ml-[20px] lgM:!gap-5  3xlM:ml-[50px] 3xlM:!gap-10 ">
+              <Card className="3xlM:!w-[250px] !w-[280px] !mt-15  ">
+                <Skeleton.Image className="!w-full !h-[200px] 3xlM:!h-[200px] " />
+                <Skeleton.Input className="!w-full mt-16 " />
+                <Skeleton.Input className="!w-full mt-16 " />
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <Container>
@@ -47,6 +65,7 @@ const HomeTemplate = () => {
 
       <Container_2>
         <PhimTypeButton></PhimTypeButton>
+
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-5  ">
           {(listSearch ? listSearch : listPhim)?.map((item) => {
             return (

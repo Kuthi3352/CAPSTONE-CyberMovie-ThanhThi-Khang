@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "components";
 import { useForm, SubmitHandler } from "react-hook-form";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LoginSchema, LoginSchemaType } from "schemas/LoginSchema";
-import { useAppDispatch } from "store";
+import { RootState, useAppDispatch } from "store";
 import { loginThunk } from "store/QuanLyNguoiDung/thunk";
 import { handleError } from "utils";
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,9 +22,9 @@ const LoginTemplate = () => {
     mode: "onBlur",
     resolver: zodResolver(LoginSchema),
   });
-  // const { isFetchingLogin } = useSelector(
-  //   (state: RootState) => state.QuanLyNguoiDung
-  // );
+  const { isFetchingLogin } = useSelector(
+    (state: RootState) => state.QuanLyNguoiDung
+  );
   const onSubmit: SubmitHandler<LoginSchemaType> = (values) => {
     dispatch(loginThunk(values))
       .unwrap()
@@ -61,7 +61,7 @@ const LoginTemplate = () => {
         type="primary"
         htmlType="submit"
         danger
-      // loading={isFetchingLogin}
+        loading={isFetchingLogin}
       >
         Đăng nhập
       </Button>
