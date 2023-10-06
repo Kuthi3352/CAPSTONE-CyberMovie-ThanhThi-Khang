@@ -82,7 +82,7 @@ const Header = () => {
                 PHIM
               </NavLink>
             </li>
-            <li className={cn("search","flex-auto", { none: show })}>
+            <li className={cn("search", "flex-auto", { none: show })}>
               <div className="search-background">
                 <Input
                   value={inputValue || ""}
@@ -217,6 +217,13 @@ const Container = styled.header`
       li {
         background-color: white;
       }
+      .bars{
+        i{transition: 0.5s;
+        &:hover{
+          transform: rotate(-90deg)scale(1.8);
+        }}
+      }
+      
       .nav {
         display: flex;
         justify-content: flex-start;
