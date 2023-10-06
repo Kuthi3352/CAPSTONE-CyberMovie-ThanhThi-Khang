@@ -41,13 +41,14 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
+
                 <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
-                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%]">
+                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                     <Button
-                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px]"
+                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px] film-left-button"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
@@ -59,7 +60,7 @@ const RapTemplate = () => {
                       Thông tin phim{" "}
                     </Button>
                   </div>
-                  <div className="w-9/12 p-2">
+                  <div className="w-9/12 p-2  ms-22">
                     <Badge
                       count={
                         item.dangChieu
@@ -80,12 +81,12 @@ const RapTemplate = () => {
                         {item.tenPhim}
                       </h1>
                     </Badge>
-
                     <div className=" grid grid-cols-4 xs:!block lgM:grid-cols-3 mdM:!grid-cols-2">
                       {item.lstLichChieuTheoPhim.map((phim) => {
                         return (
                           <ThongTinChieu
                             key={phim.maLichChieu}
+
                             className="text-center s:!w-[70px] s:!p-0"
                             onClick={() => {
                               const aT = localStorage.getItem("ACCESSTOKEN");
@@ -104,6 +105,7 @@ const RapTemplate = () => {
                               }
                             }}
                           >
+
                             <p className="lgM:text-xs s:!text-10">
                               {phim.ngayChieuGioChieu.slice(0, 10)}
                             </p>
@@ -191,9 +193,18 @@ const DivPhim = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
-  img {
-    border-radius: 4px;
-    max-height: 220px;
+  .film-left {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    img {
+      border-radius: 4px;
+      max-height: 200px;
+    }
+    .film-left-button {
+      width: 50%;
+    }
   }
 `;
 const ThongTinChieu = styled.div`
