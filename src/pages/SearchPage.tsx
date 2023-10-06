@@ -1,9 +1,7 @@
-import SearchPageTemplate from "components/templates/SearchPageTemplate"
+import SearchPageTemplate from "components/templates/SearchPageTemplate";
 
 const SearchPage = () => {
-  return (
-    <SearchPageTemplate></SearchPageTemplate>
-  )
-}
+  return <SearchPageTemplate></SearchPageTemplate>;
+};
 
-export default SearchPage
+export default SearchPage;

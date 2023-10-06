@@ -1,5 +1,5 @@
 import { apiInstance } from "constant";
-import { DatVeType } from "types/DatVeType";
+import { DatVeType } from "types";
 
 
 const api = apiInstance({

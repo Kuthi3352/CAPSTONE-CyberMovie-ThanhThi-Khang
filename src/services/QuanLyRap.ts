@@ -1,9 +1,9 @@
-import { apiInstance } from "constant/APIInstance";
+import { apiInstance } from "constant";
 import {
   CumRapType,
   HeThongRapType,
   ThongTinLichChieuType,
-} from "types/HeThongRapType";
+} from "types";
 
 
 const api = apiInstance({

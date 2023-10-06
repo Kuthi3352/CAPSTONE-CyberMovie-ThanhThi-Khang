@@ -5,12 +5,12 @@ import { PATH } from "constant";
 import { RootState, useAppDispatch } from "store";
 import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
 import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
 import { toVie } from "utils";
-import cn from 'classnames'
+import cn from "classnames";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -21,39 +21,64 @@ const Header = () => {
   const { userLogin } = useSelector(
     (state: RootState) => state.QuanLyNguoiDung
   );
-  const [show, setShow] = useState<boolean>(true)
+  const [show, setShow] = useState<boolean>(true);
+  const [scroll, setSecroll] = useState<boolean>(false);
 
+  const handleScroll = () => {
+    if (window.pageYOffset > 50) {
+      setSecroll(true);
+      return;
+    }
+    setSecroll(false);
+  };
 
-
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
-      <Container>
+      <Container
+        className={cn({
+          "header-fixed": scroll,
+        })}
+      >
         <div className="header-content">
           <h1
-            className="ms-5 logo"
+            className="ms-5 logo lgM:!text-[26px]"
             onClick={() => {
               dispatch(QuanLyPhimSliceActions.searchlist(undefined));
               navigate("/");
             }}
           >
-            CYBER<span className="text-red-500">MOVIE</span>
+            CYBER<span className="text-red-500 lgM:!text-[26px]">MOVIE</span>
           </h1>
           <ul className="flex header-drop">
-            <li className="bars" style={{display:'none'}}>
-              <i className="fa-solid fa-bars nav-bars" onClick={() => {
-                if (show) {
-                  setShow(false)
-                } else {
-                  setShow(true)
-
-                }
-              }}></i>
+            <li className="bars" style={{ display: "none" }}>
+              <i
+                className="fa-solid fa-bars nav-bars"
+                onClick={() => {
+                  if (show) {
+                    setShow(false);
+                  } else {
+                    setShow(true);
+                  }
+                }}
+              ></i>
             </li>
             <li className={cn("nav", { none: show })}>
-              <NavLink to={PATH.heThongRap} className="nav-link">
+              <NavLink
+                to={PATH.heThongRap}
+                className="nav-link text-xl lgM:!px-[8px] lgM:!text-xs xlM:text-base "
+              >
                 RẠP - LỊCH CHIẾU
               </NavLink>
-              <NavLink to={PATH.searchPage} className="nav-link">
+              <NavLink
+                to={PATH.searchPage}
+                className="nav-link text-xl lgM:!text-xs xlM:text-base"
+              >
                 PHIM
               </NavLink>
             </li>
@@ -151,6 +176,12 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
+  &.header-fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background: white;
+  }
   position: absolute;
   z-index: 99;
   left: 50%;
@@ -231,7 +262,7 @@ const Container = styled.header`
           height: 35px !important;
           border: none;
           border-radius: 0 6px 6px 0;
-          background: #30303097;
+          background: #5b5a5ab9;
           color: #fff;
           transition: 0.5s;
           &:hover {
@@ -249,10 +280,10 @@ const Container = styled.header`
           border-right: none;
           border-radius: 6px 0 0 6px;
           box-shadow: none;
-          width: 100%;
+          width: 250px;
           transition: 0.5s;
           &:hover {
-            border-color: #111;
+            border-color: #11111168;
           }
         }
         input:focus {
@@ -273,10 +304,10 @@ const Container = styled.header`
         position: absolute;
         top: 20%;
         right: 4%;
-        .bars{
-          display: block!important;;
+        .bars {
+          display: block !important;
         }
-        li{
+        li {
           padding: 4px 0;
         }
         .bars {
@@ -297,7 +328,7 @@ const Container = styled.header`
         }
         .search {
           width: 100% !important;
-          display: flex ;
+          display: flex;
           justify-content: center;
           border-radius: 0;
           input {
@@ -316,8 +347,8 @@ const Container = styled.header`
       .header-content {
         justify-content: space-between;
       }
-      .none{
-        display: none!important;
+      .none {
+        display: none !important;
       }
     }
   }

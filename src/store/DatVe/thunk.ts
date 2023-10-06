@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DatVeServices } from "services/DatVe";
-import { DatVeType } from "types/DatVeType";
+import { DatVeServices } from "services";
+import { DatVeType } from "types";
 
 export const DatVeThunk = createAsyncThunk(
     "DatVe",

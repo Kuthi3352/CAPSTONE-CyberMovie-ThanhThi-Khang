@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { QuanLyNguoiDungReducers } from "./QuanLyNguoiDung/slice";
-import { QuanLyPhimSliceReducer } from "./QuanLyPhim/slice";
-import { QuanLyRapReducer } from "./QuanLyRap/slice";
-import { DanhSachPhongVeSliceReducer } from "./DanhSachPhongVe/slice";
-import { UpdateUserReducer } from "./CapNhatUser/slice";
-import { BookingReducer } from "./DatVe";
-import { DatVeReducer } from "./DatVe/slice";
+import { QuanLyNguoiDungReducers } from "./QuanLyNguoiDung";
+import { QuanLyPhimSliceReducer } from "./QuanLyPhim";
+import { QuanLyRapReducer } from "./QuanLyRap";
+import { DanhSachPhongVeSliceReducer } from "./DanhSachPhongVe";
+import { UpdateUserReducer } from "./CapNhatUser";
+import { BookingReducer, DatVeReducer } from "./DatVe";
+
 
 
 export const RootReducer = combineReducers({
