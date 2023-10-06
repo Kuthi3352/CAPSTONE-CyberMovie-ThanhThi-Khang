@@ -41,18 +41,23 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
-                <DivPhim className="m-3 p-5" key={item.maPhim}>
-                  <div className="w-3/12 align-middle">
+                <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
+                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%]">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                     <Button
+                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px]"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
                         });
                         navigate(path);
-                      }}> Thông tin phim </Button>
+                      }}
+                    >
+                      {" "}
+                      Thông tin phim{" "}
+                    </Button>
                   </div>
                   <div className="w-9/12 p-2">
                     <Badge
@@ -60,61 +65,60 @@ const RapTemplate = () => {
                         item.dangChieu
                           ? "Đang chiếu"
                           : item.sapChieu
-                            ? "Sắp chiếu"
-                            : undefined
+                          ? "Sắp chiếu"
+                          : undefined
                       }
                       color={
                         item.dangChieu
                           ? "red"
                           : item.sapChieu
-                            ? "yellow"
-                            : undefined
+                          ? "yellow"
+                          : undefined
                       }
                     >
-                      <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
+                      <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl xs:!text-8 s:text-12 text-red-400  ">
                         {item.tenPhim}
                       </h1>
                     </Badge>
 
-
-                    <div className="grid grid-cols-4" >
-                      {
-                        item.lstLichChieuTheoPhim.map((phim) => {
-                          return (
-                            <ThongTinChieu
-
-                              key={phim.maLichChieu}
-                              className="text-center"
-                              onClick={() => {
-                                const aT = localStorage.getItem('ACCESSTOKEN')
-                                const path = generatePath(
-                                  "/thong-tin-chieu/:lichchieuID",
-                                  { lichchieuID: `${phim.maLichChieu}` }
-                                );
-                                console.log(path);
-                                dispatch(QuanLyNguoiDungActions.takeCurrentPage(path))
-                                if (aT) {
-                                  navigate(path);
-                                }
-                                else {
-                                  navigate(PATH.login)
-                                }
-                              }}
-                            >
-                              <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
-                              <p className="text-right me-3 font-bold">
-                                {phim.ngayChieuGioChieu.slice(11, 16)}
-                              </p>
-                            </ThongTinChieu>
-                          );
-                        })
-                      }
-                    </div >
-                  </div >
-                </DivPhim >
-              )
+                    <div className=" grid grid-cols-4 xs:!block lgM:grid-cols-3 mdM:!grid-cols-2">
+                      {item.lstLichChieuTheoPhim.map((phim) => {
+                        return (
+                          <ThongTinChieu
+                            key={phim.maLichChieu}
+                            className="text-center s:!w-[70px] s:!p-0"
+                            onClick={() => {
+                              const aT = localStorage.getItem("ACCESSTOKEN");
+                              const path = generatePath(
+                                "/thong-tin-chieu/:lichchieuID",
+                                { lichchieuID: `${phim.maLichChieu}` }
+                              );
+                              console.log(path);
+                              dispatch(
+                                QuanLyNguoiDungActions.takeCurrentPage(path)
+                              );
+                              if (aT) {
+                                navigate(path);
+                              } else {
+                                navigate(PATH.login);
+                              }
+                            }}
+                          >
+                            <p className="lgM:text-xs s:!text-10">
+                              {phim.ngayChieuGioChieu.slice(0, 10)}
+                            </p>
+                            <p className="text-right me-3 font-bold lgM:text-xs s:!text-10">
+                              {phim.ngayChieuGioChieu.slice(11, 16)}
+                            </p>
+                          </ThongTinChieu>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </DivPhim>
+              );
             })}
-          </div >
+          </div>
         ),
       };
     });
@@ -153,9 +157,12 @@ const RapTemplate = () => {
   }, [dispatch]);
   return (
     <div className="no-header">
-      <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
+      <h1 className="mt-5 text-4xl font-bold text-center smM:!text-2xl">
+        HỆ THỐNG RẠP - LỊCH CHIẾU
+      </h1>
       <HeThongRap>
         <Tabs
+          className="s:!p-1"
           tabPosition="left"
           items={tabsObject}
           onChange={(activeKey) => {
@@ -173,7 +180,8 @@ const HeThongRap = styled.div`
   width: 80%;
   margin: auto;
   margin-top: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow-y: scroll;
   &::-webkit-scrollbar-button {
     display: none;

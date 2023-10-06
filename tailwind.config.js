@@ -49,7 +49,9 @@ export default {
       '16': 'repeat(16, minmax(0, 1fr))',
     },
     screens: {
+      'xs': {'max': '453px'},
       's': {'max': '574px'},
+      'smM': {'max': '637px'},
       'mdM': {'max': '766px'},
       'lgM': {'max': '1021px'},
       'xlM': {'max': '1200px'},
