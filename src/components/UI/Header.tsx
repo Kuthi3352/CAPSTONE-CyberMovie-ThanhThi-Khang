@@ -188,7 +188,7 @@ const Container = styled.header`
       }
       .nav {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: center;
         width: 40%;
         .nav-link {
@@ -231,7 +231,7 @@ const Container = styled.header`
           height: 35px !important;
           border: none;
           border-radius: 0 6px 6px 0;
-          background: #5b5a5a45;
+          background: #5b5a5ab9;
           color: #fff;
           transition: 0.5s;
           &:hover {
@@ -239,26 +239,26 @@ const Container = styled.header`
             background-color: #111;
           }
         }
-      }
-      input {
-        margin-top: 0;
-        height: 35px !important;
-        background: transparent;
-        color: #111;
-        outline: none;
-        border: 1px solid #fff;
-        border-right: none;
-        border-radius: 6px 0 0 6px;
-        box-shadow: none;
-        width: 80%;
-        transition: 0.5s;
-        &:hover {
+        input {
+          margin-top: 0;
+          height: 35px !important;
+          background: transparent;
+          color: #111;
+          outline: none;
+          border: 1px solid #fff;
+          border-right: none;
+          border-radius: 6px 0 0 6px;
+          box-shadow: none;
+          width: 250px;
+          transition: 0.5s;
+          &:hover {
+            border-color: #11111168;
+          }
+        }
+        input:focus {
+          box-shadow: none;
           border-color: #111;
         }
-      }
-      input:focus {
-        box-shadow: none;
-        border-color: #111;
       }
     }
     @media screen and (max-width: 765px) {

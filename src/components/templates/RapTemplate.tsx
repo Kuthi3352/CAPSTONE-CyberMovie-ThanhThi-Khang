@@ -42,33 +42,38 @@ const RapTemplate = () => {
             {danhSachPhimHienTai?.map((item) => {
               return (
                 <DivPhim className="m-3 p-5" key={item.maPhim}>
-                  <div className="w-3/12 align-middle">
+                  <div className="w-3/12 align-middle film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                     <Button
+                      className="film-left-button"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
                         });
                         navigate(path);
-                      }}> Thông tin phim </Button>
+                      }}
+                    >
+                      {" "}
+                      Thông tin phim{" "}
+                    </Button>
                   </div>
-                  <div className="w-9/12 p-2">
+                  <div className="w-9/12 p-2  ms-22">
                     <Badge
                       count={
                         item.dangChieu
                           ? "Đang chiếu"
                           : item.sapChieu
-                            ? "Sắp chiếu"
-                            : undefined
+                          ? "Sắp chiếu"
+                          : undefined
                       }
                       color={
                         item.dangChieu
                           ? "red"
                           : item.sapChieu
-                            ? "yellow"
-                            : undefined
+                          ? "yellow"
+                          : undefined
                       }
                     >
                       <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
@@ -76,45 +81,42 @@ const RapTemplate = () => {
                       </h1>
                     </Badge>
 
-
-                    <div className="grid grid-cols-4" >
-                      {
-                        item.lstLichChieuTheoPhim.map((phim) => {
-                          return (
-                            <ThongTinChieu
-
-                              key={phim.maLichChieu}
-                              className="text-center"
-                              onClick={() => {
-                                const aT = localStorage.getItem('ACCESSTOKEN')
-                                const path = generatePath(
-                                  "/thong-tin-chieu/:lichchieuID",
-                                  { lichchieuID: `${phim.maLichChieu}` }
-                                );
-                                console.log(path);
-                                dispatch(QuanLyNguoiDungActions.takeCurrentPage(path))
-                                if (aT) {
-                                  navigate(path);
-                                }
-                                else {
-                                  navigate(PATH.login)
-                                }
-                              }}
-                            >
-                              <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
-                              <p className="text-right me-3 font-bold">
-                                {phim.ngayChieuGioChieu.slice(11, 16)}
-                              </p>
-                            </ThongTinChieu>
-                          );
-                        })
-                      }
-                    </div >
-                  </div >
-                </DivPhim >
-              )
+                    <div className="grid grid-cols-4">
+                      {item.lstLichChieuTheoPhim.map((phim) => {
+                        return (
+                          <ThongTinChieu
+                            key={phim.maLichChieu}
+                            className="text-center"
+                            onClick={() => {
+                              const aT = localStorage.getItem("ACCESSTOKEN");
+                              const path = generatePath(
+                                "/thong-tin-chieu/:lichchieuID",
+                                { lichchieuID: `${phim.maLichChieu}` }
+                              );
+                              console.log(path);
+                              dispatch(
+                                QuanLyNguoiDungActions.takeCurrentPage(path)
+                              );
+                              if (aT) {
+                                navigate(path);
+                              } else {
+                                navigate(PATH.login);
+                              }
+                            }}
+                          >
+                            <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
+                            <p className="text-right me-3 font-bold">
+                              {phim.ngayChieuGioChieu.slice(11, 16)}
+                            </p>
+                          </ThongTinChieu>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </DivPhim>
+              );
             })}
-          </div >
+          </div>
         ),
       };
     });
@@ -153,7 +155,9 @@ const RapTemplate = () => {
   }, [dispatch]);
   return (
     <div className="no-header">
-      <h1 className="mt-5 text-4xl font-bold text-center">HỆ THỐNG RẠP - LỊCH CHIẾU</h1>
+      <h1 className="mt-5 text-4xl font-bold text-center">
+        HỆ THỐNG RẠP - LỊCH CHIẾU
+      </h1>
       <HeThongRap>
         <Tabs
           tabPosition="left"
@@ -173,7 +177,8 @@ const HeThongRap = styled.div`
   width: 80%;
   margin: auto;
   margin-top: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow-y: scroll;
   &::-webkit-scrollbar-button {
     display: none;
@@ -183,9 +188,18 @@ const DivPhim = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
-  img {
-    border-radius: 4px;
-    max-height: 220px;
+  .film-left {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    img {
+      border-radius: 4px;
+      max-height: 200px;
+    }
+    .film-left-button {
+      width: 50%;
+    }
   }
 `;
 const ThongTinChieu = styled.div`
