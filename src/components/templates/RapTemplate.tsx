@@ -41,7 +41,6 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
-
                 <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
                   <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
@@ -86,7 +85,6 @@ const RapTemplate = () => {
                         return (
                           <ThongTinChieu
                             key={phim.maLichChieu}
-
                             className="text-center s:!w-[70px] s:!p-0"
                             onClick={() => {
                               const aT = localStorage.getItem("ACCESSTOKEN");
@@ -94,7 +92,6 @@ const RapTemplate = () => {
                                 "/thong-tin-chieu/:lichchieuID",
                                 { lichchieuID: `${phim.maLichChieu}` }
                               );
-                              console.log(path);
                               dispatch(
                                 QuanLyNguoiDungActions.takeCurrentPage(path)
                               );
