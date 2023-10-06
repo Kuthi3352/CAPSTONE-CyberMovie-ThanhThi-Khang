@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { DatVeType } from "types/DatVeType"
-// import { DatVeThunk } from ".";
 
-// type StateType = {
-//     datVe?: DatVeType;
-// }
 const initialState ={ 
     chairBookings: [],
     chairBookeds: [],

@@ -5,7 +5,7 @@ import { PATH } from "constant";
 import { RootState, useAppDispatch } from "store";
 import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
 import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
@@ -22,10 +22,29 @@ const Header = () => {
     (state: RootState) => state.QuanLyNguoiDung
   );
   const [show, setShow] = useState<boolean>(true);
+  const [scroll, setSecroll] = useState<boolean>(false);
 
+  const handleScroll = () => {
+    if (window.pageYOffset > 50) {
+      setSecroll(true);
+      return;
+    }
+    setSecroll(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
-      <Container>
+      <Container
+        className={cn({
+          "header-fixed": scroll,
+        })}
+      >
         <div className="header-content">
           <h1
             className="ms-5 logo lgM:!text-[26px]"
@@ -63,7 +82,7 @@ const Header = () => {
                 PHIM
               </NavLink>
             </li>
-            <li className={cn("search", { none: show })}>
+            <li className={cn("search","flex-auto", { none: show })}>
               <div className="search-background">
                 <Input
                   value={inputValue || ""}
@@ -157,6 +176,12 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
+  &.header-fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background: white;
+  }
   position: absolute;
   z-index: 99;
   left: 50%;
@@ -196,7 +221,7 @@ const Container = styled.header`
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        width: 40%;
+        width: 50%;
         .nav-link {
           font-weight: 500;
           display: inline-block;

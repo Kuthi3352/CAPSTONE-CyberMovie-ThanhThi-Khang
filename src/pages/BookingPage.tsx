@@ -1,8 +1,5 @@
-import { BookingPageTemplate } from "components/templates/BookingPageTemplate"
+import { BookingPageTemplate } from "components";
 
 export const BookingPage = () => {
-    return (
-        <BookingPageTemplate />
-    )
-}
-    
+  return <BookingPageTemplate />;
+};

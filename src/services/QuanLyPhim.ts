@@ -1,6 +1,6 @@
-import { apiInstance } from "constant/APIInstance";
-import { Banner } from "types/BannerObjectType";
-import { ThongTinPhim } from "types/DanhSachPhimType";
+import { apiInstance } from "constant";
+import { Banner } from "types";
+import { ThongTinPhim } from "types";
 
 
 const api = apiInstance({

@@ -17,10 +17,11 @@ export const AccoutDatVe = () => {
   return <div>
     {
       userLogin2.thongTinDatVe.map((item, index) => {
-        return <ThongTinDatVeTab key={index}>
+        return <ThongTinDatVeTab key={index}
+                 className="s:!p-0 mdM:p-[10px] lgM:!w-[100%] >
           <div className="datve-content">
-            <h1 className="italic text-2xl font-bold" >{item.tenPhim}</h1>
-            <p className="pt-5">Ngày đặt: {item.ngayDat.slice(0, 10)}</p>
+            <h1 className="italic text-red-500 text-2xl font-bold xs:!text-8 s:text-14 mdM:text-xl" >{item.tenPhim}</h1>
+            <p className="pt-5 font-500 xs:text-8 xs:!pt-0">Ngày đặt: {item.ngayDat.slice(0, 10)}</p>
             <p className="pb-3">Giá vé: <span className="italic font-bold">{item.giaVe.toLocaleString()}</span> VND</p>
             <table className="table w-full border">
               <thead className="border bg-lime-300">
@@ -51,13 +52,10 @@ export const AccoutDatVe = () => {
   </div>;
 };
 
-
 const ThongTinDatVeTab = styled.div`
-width: 80%;
-padding: 20px;
-border: 1px solid #706f6f49;
-border-radius: 6px;
-margin-bottom: 6px;
-
-
-`
+  width: 80%;
+  padding: 20px;
+  border: 1px solid #706f6f49;
+  border-radius: 6px;
+  margin-bottom: 6px;
+`;

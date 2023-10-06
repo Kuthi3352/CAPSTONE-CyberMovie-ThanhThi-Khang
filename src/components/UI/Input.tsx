@@ -35,7 +35,7 @@ export const Input = ({
         id={id}
         placeholder={placeholder}
         type={type}
-        className="p-10 mt-8 w-full text-white rounded-6 bg-[#8383831f]"
+        className="xs:!p-4 p-10 mt-8 w-full text-white rounded-6 bg-[#8383831f]"
         {...register?.(name)}
       />
       {!!error && <p className="text-red-500 text-14">{error} </p>}
