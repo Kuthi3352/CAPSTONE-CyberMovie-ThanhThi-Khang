@@ -28,7 +28,7 @@ const HomeTemplate = () => {
   }
 
   return (
-    <Container>
+    <Container className="no-header">
       <Swiper
         spaceBetween={50}
         slidesPerView={1}

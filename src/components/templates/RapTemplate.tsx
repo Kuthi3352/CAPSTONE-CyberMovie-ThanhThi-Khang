@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
+import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
 import {
   CumRapThunk,
   HeThongRapThunk,
@@ -18,7 +19,6 @@ const RapTemplate = () => {
   const { heThongRap, cumRap, ThongTinLichChieu } = useSelector(
     (state: RootState) => state.QuanLyRap
   );
-
   const [mhtr, setmhtr] = useState<string>("BHDStar");
   const [danhSachPhimHienTai, setdanhSachPhimHienTai] = useState<
     DanhSachPhim[]
@@ -82,14 +82,23 @@ const RapTemplate = () => {
                         item.lstLichChieuTheoPhim.map((phim) => {
                           return (
                             <ThongTinChieu
+
                               key={phim.maLichChieu}
                               className="text-center"
                               onClick={() => {
+                                const aT = localStorage.getItem('ACCESSTOKEN')
                                 const path = generatePath(
                                   "/thong-tin-chieu/:lichchieuID",
                                   { lichchieuID: `${phim.maLichChieu}` }
                                 );
-                                navigate(path);
+                                console.log(path);
+                                dispatch(QuanLyNguoiDungActions.takeCurrentPage(path))
+                                if (aT) {
+                                  navigate(path);
+                                }
+                                else {
+                                  navigate(PATH.login)
+                                }
                               }}
                             >
                               <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
@@ -103,7 +112,7 @@ const RapTemplate = () => {
                     </div >
                   </div >
                 </DivPhim >
-            )
+              )
             })}
           </div >
         ),

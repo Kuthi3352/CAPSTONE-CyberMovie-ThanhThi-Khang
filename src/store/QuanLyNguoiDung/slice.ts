@@ -7,6 +7,7 @@ type StateType = {
   userLogin?: UserLogin | getUserLoginType;
   userLogin2?: getUserLoginType;
   isFetchingLogin?: boolean;
+  currentPage?:string;
 };
 const initialState: StateType = {
   accessToken: getAccessToken(),
@@ -22,6 +23,9 @@ const quanLyNguoiDungSlice = createSlice({
       state.userLogin = undefined;
       localStorage.removeItem("ACCESSTOKEN");
     },
+    takeCurrentPage: (state,{payload}) =>{
+      state.currentPage = payload
+    }
   },
   extraReducers(builder) {
     builder
