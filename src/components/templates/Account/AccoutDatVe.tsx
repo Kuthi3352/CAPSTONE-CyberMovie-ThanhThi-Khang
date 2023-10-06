@@ -9,7 +9,6 @@ export const AccoutDatVe = () => {
   const { userLogin2 } = useSelector(
     (state: RootState) => state.QuanLyNguoiDung
   );
-  console.log("use", userLogin2.thongTinDatVe);
 
   useEffect(() => {
     dispatch(checkLoginThunk());
@@ -58,6 +57,4 @@ padding: 20px;
 border: 1px solid #706f6f49;
 border-radius: 6px;
 margin-bottom: 6px;
-
-
 `
