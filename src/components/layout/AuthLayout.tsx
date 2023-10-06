@@ -4,7 +4,7 @@ import { getAccessToken } from 'utils'
 export const AuthLayout = () => {
     const accessToken = getAccessToken()
     if (accessToken) {
-        return <Navigate to ='/'/>
+        return <Navigate to='/' />
     }
     return (
         <div className="AuthLayout h-full">
@@ -17,7 +17,7 @@ export const AuthLayout = () => {
                 </div>
                 <div className="absolute top-0 left-0 w-full h-full bg-black z-10 opacity-50 "></div>
                 <div className="absolute w-[450px] p-[30px] top-1/2 left-1/2 bg-[rgba(0,0,0,.75)] z-20 -translate-x-1/2 -translate-y-1/2 rounded-md">
-                    <Outlet />
+                    <Outlet/>
                 </div>
             </div>
         </div>

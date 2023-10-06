@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const LoginTemplate = () => {
+  const { currentPage } = useSelector((state: RootState) => state.QuanLyNguoiDung)
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -30,12 +31,18 @@ const LoginTemplate = () => {
       .unwrap()
       .then(() => {
         toast.success("Đăng nhập thành công");
-        navigate("/");
+        if (currentPage) {
+          navigate(currentPage)
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => {
         handleError(err);
       });
   };
+
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
