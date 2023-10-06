@@ -41,13 +41,14 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
-                <DivPhim className="m-3 p-5" key={item.maPhim}>
-                  <div className="w-3/12 align-middle film-left">
+
+                <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
+                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                     <Button
-                      className="film-left-button"
+                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px] film-left-button"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
@@ -76,17 +77,17 @@ const RapTemplate = () => {
                           : undefined
                       }
                     >
-                      <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl">
+                      <h1 className="text-xl font-semibold ms-2 my-2 italic drop-shadow-xl xs:!text-8 s:text-12 text-red-400  ">
                         {item.tenPhim}
                       </h1>
                     </Badge>
-
-                    <div className="grid grid-cols-4">
+                    <div className=" grid grid-cols-4 xs:!block lgM:grid-cols-3 mdM:!grid-cols-2">
                       {item.lstLichChieuTheoPhim.map((phim) => {
                         return (
                           <ThongTinChieu
                             key={phim.maLichChieu}
-                            className="text-center"
+
+                            className="text-center s:!w-[70px] s:!p-0"
                             onClick={() => {
                               const aT = localStorage.getItem("ACCESSTOKEN");
                               const path = generatePath(
@@ -104,8 +105,11 @@ const RapTemplate = () => {
                               }
                             }}
                           >
-                            <p>{phim.ngayChieuGioChieu.slice(0, 10)}</p>
-                            <p className="text-right me-3 font-bold">
+
+                            <p className="lgM:text-xs s:!text-10">
+                              {phim.ngayChieuGioChieu.slice(0, 10)}
+                            </p>
+                            <p className="text-right me-3 font-bold lgM:text-xs s:!text-10">
                               {phim.ngayChieuGioChieu.slice(11, 16)}
                             </p>
                           </ThongTinChieu>
@@ -155,11 +159,12 @@ const RapTemplate = () => {
   }, [dispatch]);
   return (
     <div className="no-header">
-      <h1 className="mt-5 text-4xl font-bold text-center">
+      <h1 className="mt-5 text-4xl font-bold text-center smM:!text-2xl">
         HỆ THỐNG RẠP - LỊCH CHIẾU
       </h1>
       <HeThongRap>
         <Tabs
+          className="s:!p-1"
           tabPosition="left"
           items={tabsObject}
           onChange={(activeKey) => {
