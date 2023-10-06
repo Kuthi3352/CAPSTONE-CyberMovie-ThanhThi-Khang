@@ -45,7 +45,7 @@ export const DetailTemplate = () => {
               {thongTinPhim?.moTa.slice(0, 250)}
             </p>
             <div className="flex">
-              <Button type="primary" danger className="mr-5 !font-medium ">
+              <Button type="primary" danger className="mr-5 !font-medium">
                 Xem Trailer
               </Button>
             </div>
@@ -57,7 +57,7 @@ export const DetailTemplate = () => {
   );
 };
 const Detail = styled.div`
-padding-top: 70px!important;
+padding-top: 90px!important;
   @media (max-width: 1682px) {
     .Detail_Img {
       width: 32%;

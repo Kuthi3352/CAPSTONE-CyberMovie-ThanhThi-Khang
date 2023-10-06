@@ -42,11 +42,11 @@ const RapTemplate = () => {
             {danhSachPhimHienTai?.map((item) => {
               return (
                 <DivPhim className="m-3 p-5" key={item.maPhim}>
-                  <div className="w-3/12 align-middle">
+                  <div className="w-3/12 align-middle film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
-                    <Button
+                    <Button className="film-detail-button"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
@@ -54,7 +54,7 @@ const RapTemplate = () => {
                         navigate(path);
                       }}> Thông tin phim </Button>
                   </div>
-                  <div className="w-9/12 p-2">
+                  <div className="w-9/12 p-2 ms-20">
                     <Badge
                       count={
                         item.dangChieu
@@ -183,9 +183,18 @@ const DivPhim = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
+  .film-left{
+    display: flex;
+    flex-direction: column;
+  height: 250px;
+  }
+  .film-detail-button{
+width: 50%;
+margin-top: 10px;
+  }
   img {
     border-radius: 4px;
-    max-height: 220px;
+    max-height: 200px;
   }
 `;
 const ThongTinChieu = styled.div`
