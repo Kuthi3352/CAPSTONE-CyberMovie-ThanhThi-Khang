@@ -1,6 +1,6 @@
-import { DatVeType } from "types/DatVeType"
+import { DatVeType } from "types"
 
-// import { DatVeThunk } from ".";
+
 import { createSlice } from "@reduxjs/toolkit";
 
 

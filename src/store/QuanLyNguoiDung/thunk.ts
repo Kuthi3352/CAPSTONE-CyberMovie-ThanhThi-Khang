@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { LoginSchemaType } from "schemas/LoginSchema";
-import { QuanLyNguoiDungServices } from "services/QuanLyNguoiDung";
+import { LoginSchemaType } from "schemas";
+import { QuanLyNguoiDungServices } from "services";
 import { getAccessToken } from "utils";
 
 export const loginThunk = createAsyncThunk(

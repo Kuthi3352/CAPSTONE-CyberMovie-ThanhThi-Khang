@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AccountSchemaType } from "schemas";
 import { capNhatUser } from "services";
-import { checkLoginThunk } from "store/QuanLyNguoiDung/thunk";
+import { checkLoginThunk } from "store/QuanLyNguoiDung";
 
 export const UpdateUserThunk  = createAsyncThunk(
     'capNhatUser/UpdateUser',

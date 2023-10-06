@@ -4,15 +4,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { LoginSchema, LoginSchemaType } from "schemas/LoginSchema";
+import { LoginSchema, LoginSchemaType } from "schemas";
 import { RootState, useAppDispatch } from "store";
-import { loginThunk } from "store/QuanLyNguoiDung/thunk";
+import { loginThunk } from "store/QuanLyNguoiDung";
 import { handleError } from "utils";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginTemplate = () => {
-  const { currentPage } = useSelector((state: RootState) => state.QuanLyNguoiDung)
+  const { currentPage } = useSelector(
+    (state: RootState) => state.QuanLyNguoiDung
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -32,7 +33,7 @@ const LoginTemplate = () => {
       .then(() => {
         toast.success("Đăng nhập thành công");
         if (currentPage) {
-          navigate(currentPage)
+          navigate(currentPage);
         } else {
           navigate("/");
         }
@@ -41,8 +42,6 @@ const LoginTemplate = () => {
         handleError(err);
       });
   };
-
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

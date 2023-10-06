@@ -1,21 +1,23 @@
 // import { useEffect } from "react";
-import { Button } from "components";
+import { Button, Skeleton } from "components";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
-import { DanhSachPhongVeThunk } from "store/DanhSachPhongVe/thunk";
+import { DanhSachPhongVeThunk } from "store/DanhSachPhongVe";
 import { BookingAction, DatVeThunk } from "store/DatVe";
 import styled from "styled-components";
 import cln from "classnames";
-import { DanhSachVe, DatVeType } from "types/DatVeType";
+import { DanhSachVe, DatVeType } from "types";
 
 export const BookingPageTemplate = () => {
   const dispatch = useAppDispatch();
   const { DanhSachPhongVe } = useSelector(
     (state: RootState) => state.DanhSachPhongVe
   );
-  
+  const { isFetchingMovieList } = useSelector(
+    (state: RootState) => state.QuanLyPhim
+  );
 
   const { lichchieuID } = useParams();
   const { chairBookings, chairBookeds } = useSelector(
@@ -30,7 +32,13 @@ export const BookingPageTemplate = () => {
   useEffect(() => {
     dispatch(DanhSachPhongVeThunk(lichchieuID));
   }, [dispatch, lichchieuID]);
-
+  if (isFetchingMovieList) {
+    return (
+      <div className="no-header">
+        <Skeleton active className="!mt-48"></Skeleton>
+      </div>
+    );
+  }
   return (
     <ContainerBooking className="no-header">
       <div className="xl:w-3/6 lg:mx-[40px] grid grid-cols-16 gap-4 mt-5 ">
@@ -40,7 +48,7 @@ export const BookingPageTemplate = () => {
               key={index}
               className={cln(
                 "ml-auto hover:bg-sky-700",
-                "grid grid-cols-12 gap-2", 
+                "grid grid-cols-12 gap-2",
                 {
                   booking: chairBookings.find(
                     (item) => item.tenGhe === ghe.tenGhe
@@ -48,7 +56,7 @@ export const BookingPageTemplate = () => {
                   booked: chairBookeds.find(
                     (item) => item.tenGhe === ghe.tenGhe
                   ),
-                  vip: ghe.loaiGhe==='Vip'
+                  vip: ghe.loaiGhe === "Vip",
                 }
               )}
               onClick={() => {
@@ -176,7 +184,7 @@ const SoGhe = styled.div`
     pointer-events: none;
   }
   &.vip {
-    background-color: #22D3EE;
+    background-color: #22d3ee;
   }
   @media (max-width: 1339px) {
     width: 25px;
@@ -195,116 +203,116 @@ const SoGhe = styled.div`
 `;
 
 const ContainerBooking = styled.div`
-display:flex;
+  display: flex;
   width: 80%;
   margin: auto;
-  @media (max-width:1532px){
-    .OGhe, .noidung{
-      font-size:14px
+  @media (max-width: 1532px) {
+    .OGhe,
+    .noidung {
+      font-size: 14px;
     }
-    .tenphim{
-      font-size:25px
-    }
-  }
-  @media (max-width:1395px){
-    .OGhe, .noidung{
-      margin-left:10px;
-    }
-    .tenphim{
-      font-size:20px;
-      margin-left:10px; 
-      margin-top:0px!important;
-    }
-    .thanhTien{
-      font-size:25px;
-      margin-top:30px;
+    .tenphim {
+      font-size: 25px;
     }
   }
-  @media (max-width:1339px){
-    .noidung, .tenphim{
-      margin-top:10px;
+  @media (max-width: 1395px) {
+    .OGhe,
+    .noidung {
+      margin-left: 10px;
+    }
+    .tenphim {
+      font-size: 20px;
+      margin-left: 10px;
+      margin-top: 0px !important;
+    }
+    .thanhTien {
+      font-size: 25px;
+      margin-top: 30px;
+    }
+  }
+  @media (max-width: 1339px) {
+    .noidung,
+    .tenphim {
+      margin-top: 10px;
     }
     .OGhe {
-      margin-top:10px;
-      font-size:12px;
-      .o{
-        margin-left:10px
+      margin-top: 10px;
+      font-size: 12px;
+      .o {
+        margin-left: 10px;
       }
     }
   }
-  @media (max-width:1141px){
-    display:block !important;
-    .content{
-      width:80%;
-      margin-left:20px;
-      margin-top:30px;
+  @media (max-width: 1141px) {
+    display: block !important;
+    .content {
+      width: 80%;
+      margin-left: 20px;
+      margin-top: 30px;
     }
-    .OGhe{
-      font-size:15px;
-     
+    .OGhe {
+      font-size: 15px;
     }
-    .noidung{
-      font-size:20px
+    .noidung {
+      font-size: 20px;
     }
-    .tenphim,.thanhTien{
-      font-size:30px
+    .tenphim,
+    .thanhTien {
+      font-size: 30px;
     }
-    .content_text{
-      margin-left:30px
-    }
-   
-  }
-  @media (max-width:1004px){
-    .noidung{
-      font-size:16px
-    }
-    .OGhe{
-      font-size:12px;
-     
+    .content_text {
+      margin-left: 30px;
     }
   }
-  @media (max-width:820px){
-    .tenphim,.thanhTien{
-      font-size:20px
+  @media (max-width: 1004px) {
+    .noidung {
+      font-size: 16px;
     }
-    .noidung{
-      font-size:14px
-    }
-    .OGhe{
-      font-size:10px;
-     
+    .OGhe {
+      font-size: 12px;
     }
   }
-  @media (max-width:723px){
-    content_img{
-      width:40% !important;
+  @media (max-width: 820px) {
+    .tenphim,
+    .thanhTien {
+      font-size: 20px;
     }
-    .content_text{
-      margin-left:10px
+    .noidung {
+      font-size: 14px;
     }
-  }
-  @media (max-width:649px){
-    .tenphim,.thanhTien{
-      font-size:17px
-    }
-    .noidung{
-      font-size:12px
-    }
-    .OGhe{
-      font-size:8px;
-     
-    }
-    .o{
-      margin-left:0px!important;
+    .OGhe {
+      font-size: 10px;
     }
   }
-  @media (max-width:397px){
-    .thanhTien{
-      font-size:15px !important;
-      span{
-        font-size:12px !important;
+  @media (max-width: 723px) {
+    content_img {
+      width: 40% !important;
+    }
+    .content_text {
+      margin-left: 10px;
+    }
+  }
+  @media (max-width: 649px) {
+    .tenphim,
+    .thanhTien {
+      font-size: 17px;
+    }
+    .noidung {
+      font-size: 12px;
+    }
+    .OGhe {
+      font-size: 8px;
+    }
+    .o {
+      margin-left: 0px !important;
+    }
+  }
+  @media (max-width: 397px) {
+    .thanhTien {
+      font-size: 15px !important;
+      span {
+        font-size: 12px !important;
       }
     }
   }
-  
 `;

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { QuanLyPhimServices } from "services/QuanLyPhim";
+import { QuanLyPhimServices } from "services";
 import { sleep } from "utils";
 
 export const BannerThunk = createAsyncThunk(

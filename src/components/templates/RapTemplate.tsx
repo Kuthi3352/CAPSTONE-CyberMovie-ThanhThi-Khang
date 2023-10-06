@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
-import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung/slice";
+import { QuanLyNguoiDungActions } from "store/QuanLyNguoiDung";
 import {
   CumRapThunk,
   HeThongRapThunk,
