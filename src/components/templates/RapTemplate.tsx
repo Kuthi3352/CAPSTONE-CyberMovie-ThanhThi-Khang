@@ -41,14 +41,17 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
-
-                <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
-                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left">
+                <DivPhim
+                  className="m-3 p-5 smM:!block xs:!p-1"
+                  key={item.maPhim}
+                >
+                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left ">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
                     <Button
-                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px] film-left-button"
+                      danger
+                      className="!block !font-medium !ml-4 xs:!text-10 xs:!p-0 s:p-2 s:text-12 xs:!h-[25px] film-left-button w-[45%] mdM:!w-[90%] xlM:w-[70%]"
                       onClick={() => {
                         const path = generatePath(PATH.detail, {
                           movieID: item.maPhim,
@@ -57,11 +60,12 @@ const RapTemplate = () => {
                       }}
                     >
                       {" "}
-                      Thông tin phim{" "}
+                      Thông tin
                     </Button>
                   </div>
-                  <div className="w-9/12 p-2  ms-22">
+                  <div className="w-9/12 p-2  ms-22 ">
                     <Badge
+                      className=""
                       count={
                         item.dangChieu
                           ? "Đang chiếu"
@@ -86,7 +90,6 @@ const RapTemplate = () => {
                         return (
                           <ThongTinChieu
                             key={phim.maLichChieu}
-
                             className="text-center s:!w-[70px] s:!p-0"
                             onClick={() => {
                               const aT = localStorage.getItem("ACCESSTOKEN");
@@ -105,7 +108,6 @@ const RapTemplate = () => {
                               }
                             }}
                           >
-
                             <p className="lgM:text-xs s:!text-10">
                               {phim.ngayChieuGioChieu.slice(0, 10)}
                             </p>
@@ -201,9 +203,6 @@ const DivPhim = styled.div`
     img {
       border-radius: 4px;
       max-height: 200px;
-    }
-    .film-left-button {
-      width: 50%;
     }
   }
 `;
