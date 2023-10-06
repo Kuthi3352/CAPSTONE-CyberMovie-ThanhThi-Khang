@@ -1,7 +1,7 @@
-import { apiInstance } from "constant/APIInstance";
+import { apiInstance } from "constant";
 import { RegisterSchemaType } from "schemas";
-import { LoginSchemaType } from "schemas/LoginSchema";
-import { UserLogin, getUserLoginType } from "types/UserLoginType";
+import { LoginSchemaType } from "schemas";
+import { UserLogin, getUserLoginType } from "types";
 
 
 const api = apiInstance({

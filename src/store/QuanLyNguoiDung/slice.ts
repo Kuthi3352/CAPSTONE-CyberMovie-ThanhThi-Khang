@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserLogin, getUserLoginType } from "types/UserLoginType";
+import { UserLogin, getUserLoginType } from "types";
 import { checkLoginThunk, loginThunk } from "./thunk";
 import { getAccessToken } from "utils";
 type StateType = {

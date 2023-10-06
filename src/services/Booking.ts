@@ -1,4 +1,4 @@
-import { apiInstance } from "constant/APIInstance";
+import { apiInstance } from "constant";
 import { DanhSachPhongVe } from "types";
 
 const api = apiInstance({

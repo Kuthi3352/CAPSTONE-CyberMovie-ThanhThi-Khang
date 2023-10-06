@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {DanhSachPhongVe} from "types/DanhSachPhongVe";
+import {DanhSachPhongVe} from "types";
 
 import {  DanhSachPhongVeThunk} from "./thunk";
 

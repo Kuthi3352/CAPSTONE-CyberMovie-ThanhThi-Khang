@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DanhSachPhongVeServices } from "services/Booking";
+import { DanhSachPhongVeServices } from "services";
 
 export const DanhSachPhongVeThunk = createAsyncThunk(
     "QuanLyDatVe/DanhSachPhongVe",

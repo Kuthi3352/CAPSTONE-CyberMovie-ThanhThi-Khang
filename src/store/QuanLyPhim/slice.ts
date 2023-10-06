@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Banner } from "types/BannerObjectType";
+import { Banner } from "types";
 import { BannerThunk, DanhSachPhimThunk, DetailPhimThunk } from "./thunk";
-import { ThongTinPhim } from "types/DanhSachPhimType";
+import { ThongTinPhim } from "types";
 
 type StateType = {
   bannerList?: Banner[];
