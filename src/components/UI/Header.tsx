@@ -17,7 +17,7 @@ const Header = () => {
   const { accessToken } = useAuth();
   const navigate = useNavigate();
   const { listPhim } = useSelector((state: RootState) => state.QuanLyPhim);
-  const [inputValue, setInputValue] = useState<string>();
+  const [inputValue, setInputValue] = useState<string>("");
   const { userLogin } = useSelector(
     (state: RootState) => state.QuanLyNguoiDung
   );
@@ -287,7 +287,7 @@ const Container = styled.header`
           border-right: none;
           border-radius: 6px 0 0 6px;
           box-shadow: none;
-          width: 250px;
+          width: 100%;
           transition: 0.5s;
           &:hover {
             border-color: #11111168;

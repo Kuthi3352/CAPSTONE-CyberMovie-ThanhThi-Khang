@@ -41,11 +41,9 @@ const RapTemplate = () => {
           <div>
             {danhSachPhimHienTai?.map((item) => {
               return (
-                <DivPhim
-                  className="m-3 p-5 smM:!block xs:!p-1"
-                  key={item.maPhim}
-                >
-                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left ">
+
+                <DivPhim className="m-3 p-5 smM:!block" key={item.maPhim}>
+                  <div className="w-3/12 align-middle s:!w-[70%] mdM:w-[50%] lgM:w-[36%] film-left">
                     <Badge count={item.hot ? "Hot" : undefined}>
                       <img src={item.hinhAnh} alt="" />
                     </Badge>
@@ -97,7 +95,6 @@ const RapTemplate = () => {
                                 "/thong-tin-chieu/:lichchieuID",
                                 { lichchieuID: `${phim.maLichChieu}` }
                               );
-                              console.log(path);
                               dispatch(
                                 QuanLyNguoiDungActions.takeCurrentPage(path)
                               );
