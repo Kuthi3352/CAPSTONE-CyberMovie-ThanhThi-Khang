@@ -10,7 +10,7 @@ import { Avatar, Button, Popover } from "components";
 import { Input } from "antd";
 import { QuanLyPhimSliceActions } from "store/QuanLyPhim/slice";
 import { toVie } from "utils";
-import cn from 'classnames'
+import cn from "classnames";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -21,39 +21,45 @@ const Header = () => {
   const { userLogin } = useSelector(
     (state: RootState) => state.QuanLyNguoiDung
   );
-  const [show, setShow] = useState<boolean>(true)
-
-
+  const [show, setShow] = useState<boolean>(true);
 
   return (
     <div>
       <Container>
         <div className="header-content">
           <h1
-            className="ms-5 logo"
+            className="ms-5 logo lgM:!text-[26px]"
             onClick={() => {
               dispatch(QuanLyPhimSliceActions.searchlist(undefined));
               navigate("/");
             }}
           >
-            CYBER<span className="text-red-500">MOVIE</span>
+            CYBER<span className="text-red-500 lgM:!text-[26px]">MOVIE</span>
           </h1>
           <ul className="flex header-drop">
-            <li className="bars" style={{display:'none'}}>
-              <i className="fa-solid fa-bars nav-bars" onClick={() => {
-                if (show) {
-                  setShow(false)
-                } else {
-                  setShow(true)
-
-                }
-              }}></i>
+            <li className="bars" style={{ display: "none" }}>
+              <i
+                className="fa-solid fa-bars nav-bars"
+                onClick={() => {
+                  if (show) {
+                    setShow(false);
+                  } else {
+                    setShow(true);
+                  }
+                }}
+              ></i>
             </li>
             <li className={cn("nav", { none: show })}>
-              <NavLink to={PATH.heThongRap} className="nav-link">
+              <NavLink
+                to={PATH.heThongRap}
+                className="nav-link text-xl lgM:!px-[8px] lgM:!text-xs xlM:text-base "
+              >
                 RẠP - LỊCH CHIẾU
               </NavLink>
-              <NavLink to={PATH.searchPage} className="nav-link">
+              <NavLink
+                to={PATH.searchPage}
+                className="nav-link text-xl lgM:!text-xs xlM:text-base"
+              >
                 PHIM
               </NavLink>
             </li>
@@ -273,10 +279,10 @@ const Container = styled.header`
         position: absolute;
         top: 20%;
         right: 4%;
-        .bars{
-          display: block!important;;
+        .bars {
+          display: block !important;
         }
-        li{
+        li {
           padding: 4px 0;
         }
         .bars {
@@ -297,7 +303,7 @@ const Container = styled.header`
         }
         .search {
           width: 100% !important;
-          display: flex ;
+          display: flex;
           justify-content: center;
           border-radius: 0;
           input {
@@ -316,8 +322,8 @@ const Container = styled.header`
       .header-content {
         justify-content: space-between;
       }
-      .none{
-        display: none!important;
+      .none {
+        display: none !important;
       }
     }
   }
