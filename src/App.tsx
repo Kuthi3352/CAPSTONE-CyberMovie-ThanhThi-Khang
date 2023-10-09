@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import { router } from "./route";
+import { router } from "./routes";
 import "assets/style.css";
 
 function App() {
