@@ -29,12 +29,12 @@ const quanLyNguoiDungSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(loginThunk.pending, (state) => {
-        state.isFetchingLogin = true;
-      })
-      .addCase(loginThunk.rejected, (state) => {
-        state.isFetchingLogin = false;
-      })
+      // .addCase(loginThunk.pending, (state) => {
+      //   state.isFetchingLogin = true;
+      // })
+      // .addCase(loginThunk.rejected, (state) => {
+      //   state.isFetchingLogin = false;
+      // })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         localStorage.setItem("ACCESSTOKEN", payload.accessToken);
         state.accessToken = payload.accessToken;

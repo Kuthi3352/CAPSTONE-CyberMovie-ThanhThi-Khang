@@ -21,9 +21,9 @@ const HomeTemplate = () => {
 
   if (isFetchingMovieList) {
     return (
-      <Container_2 className="no-header">
+      <Container className="no-header">
         <Skeleton active className="mt-48"></Skeleton>
-      </Container_2>
+      </Container>
     );
   }
 

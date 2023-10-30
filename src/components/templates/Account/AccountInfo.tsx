@@ -10,6 +10,8 @@ import { UpdateUserThunk } from "store/CapNhatUser/thunk";
 export const AccountInfo = () => {
   const dispatch = useAppDispatch();
   const { user } = useAuth();
+  console.log("user", user);
+
   const {
     reset,
     register,
@@ -29,7 +31,7 @@ export const AccountInfo = () => {
       ...user,
       soDt: user?.soDT,
     });
-  }, [user, reset]);
+  }, [reset, user]);
 
   return (
     <form
@@ -85,6 +87,7 @@ export const AccountInfo = () => {
         error={errors?.maLoaiNguoiDung?.message}
         register={register}
       />
+      <input value={1233} />
       <div className="w-[100%]  mt-20 ">
         <Button
           danger

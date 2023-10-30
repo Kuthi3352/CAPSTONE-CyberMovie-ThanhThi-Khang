@@ -217,13 +217,15 @@ const Container = styled.header`
       li {
         background-color: white;
       }
-      .bars{
-        i{transition: 0.5s;
-        &:hover{
-          transform: rotate(-90deg)scale(1.8);
-        }}
+      .bars {
+        i {
+          transition: 0.5s;
+          &:hover {
+            transform: rotate(-90deg) scale(1.8);
+          }
+        }
       }
-      
+
       .nav {
         display: flex;
         justify-content: flex-start;
